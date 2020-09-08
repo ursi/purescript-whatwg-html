@@ -4,27 +4,27 @@ module Optional
   , class OptionalHelper
   ) where
 
-import Data.Symbol (class IsSymbol)
 import Prim.Row as R
+import Prim.RowList (kind RowList, Nil)
 import Prim.RowList as RL
 
-class Optional (option :: # Type) (record :: # Type)
+class Optional (options :: # Type) (row :: # Type)
 
-instance fromRecordAny ::
-  ( OptionalHelper list option record
-  , RL.RowToList record list
+instance optional ::
+  ( RL.RowToList row list
+  , OptionalHelper list options row
   ) =>
-  Optional option record
+  Optional options row
 
-class OptionalHelper (list :: RL.RowList) (option :: # Type) (record :: # Type) | list -> option record
+class OptionalHelper (list :: RowList) (options :: # Type) (row :: # Type) | list -> options row
 
-instance fromRecordOptionNil :: OptionalHelper RL.Nil option ()
-else instance fromRecordOptionCons ::
-  ( IsSymbol label
-  , OptionalHelper list record' option'
-  , R.Cons label value option' option
-  , R.Cons label value record' record
-  , R.Lacks label option'
-  , R.Lacks label record'
+instance optionalHelperNil :: OptionalHelper Nil options ()
+
+instance optionalHelperCons ::
+  ( R.Cons label type_ o options
+  , R.Cons label type_ r row
+  , R.Lacks label o
+  , R.Lacks label r
+  , OptionalHelper list o r
   ) =>
-  OptionalHelper (RL.Cons label value list) option record
+  OptionalHelper (RL.Cons label type_ list) options row
