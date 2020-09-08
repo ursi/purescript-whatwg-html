@@ -1,8 +1,5 @@
 module DOM.Document
-  ( module DOM.Node
-  , module DOM.NonElementParentNode
-  , module DOM.ParentNode
-  , module DOM.XPathEvaluatorBase
+  ( module Exports
   , class IsDocument
   , ElementCreationOptions
   , createElement
@@ -11,12 +8,17 @@ module DOM.Document
 
 import MasonPrelude
 import DOM.Element (Element)
-import DOM.Node
-import DOM.NonElementParentNode
-import DOM.ParentNode
+import DOM.Node (class IsNode)
+import DOM.NonElementParentNode (class IsNonElementParentNode)
+import DOM.ParentNode (class IsParentNode)
 import DOM.Text (Text)
-import DOM.XPathEvaluatorBase
+import DOM.XPathEvaluatorBase (class IsXPathEvaluatorBase)
 import Optional (class Optional)
+-- EXPORTS
+import DOM.Node as Exports
+import DOM.NonElementParentNode as Exports
+import DOM.ParentNode as Exports
+import DOM.XPathEvaluatorBase as Exports
 
 class (IsNode a, IsNonElementParentNode a, IsParentNode a, IsXPathEvaluatorBase a) <= IsDocument a
 

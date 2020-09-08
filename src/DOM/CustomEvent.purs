@@ -1,9 +1,11 @@
 module DOM.CustomEvent
-  ( module DOM.Event
+  ( module Exports
   , class IsCustomEvent
   ) where
 
-import DOM.Event
+import DOM.Event (class IsEvent)
+-- EXPORTS
+import DOM.Event as Exports
 
 class IsEvent a <= IsCustomEvent a
 

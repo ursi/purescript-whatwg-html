@@ -1,11 +1,13 @@
 module HTML.Window
-  ( module DOM.EventTarget
-  , module HTML.Window
+  ( module Exports
+  , document
   ) where
 
 import MasonPrelude
 import DOM.EventTarget (class IsEventTarget)
 import HTML.Document (Document)
+-- EXPORTS
+import DOM.EventTarget as Exports
 
 class IsEventTarget a <= IsWindow a
 

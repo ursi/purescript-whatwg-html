@@ -1,5 +1,5 @@
 module DOM.Node
-  ( module DOM.EventTarget
+  ( module Exports
   , class IsNode
   , Node
   , appendChild
@@ -13,7 +13,9 @@ module DOM.Node
 import MasonPrelude
 import Data.Nullable (Nullable)
 import Data.Nullable as Nullable
-import DOM.EventTarget
+import DOM.EventTarget (class IsEventTarget)
+-- EXPORTS
+import DOM.EventTarget as Exports
 
 class IsEventTarget a <= IsNode a
 

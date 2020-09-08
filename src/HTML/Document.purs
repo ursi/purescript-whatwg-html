@@ -1,6 +1,5 @@
 module HTML.Document
-  ( module DOM.Document.Export
-  , module HTML.DocumentOrShadowRoot
+  ( module Exports
   , class IsDocument
   , Document
   , body
@@ -11,13 +10,14 @@ import MasonPrelude
 import Data.Nullable (Nullable)
 import Data.Nullable as Nullable
 import DOM.Document as DOM.Document
-import DOM.Document hiding (class IsDocument) as DOM.Document.Export
-import DOM.Node
-import DOM.NonElementParentNode
-import DOM.ParentNode
-import DOM.XPathEvaluatorBase
-import HTML.DocumentOrShadowRoot
-import HTML.HTMLElement
+import DOM.NonElementParentNode (class IsNonElementParentNode)
+import DOM.ParentNode (class IsParentNode)
+import DOM.XPathEvaluatorBase (class IsXPathEvaluatorBase)
+import HTML.HTMLElement (class IsEventTarget, class IsNode, HTMLElement)
+import HTML.DocumentOrShadowRoot (class IsDocumentOrShadowRoot)
+-- EXPORTS
+import DOM.Document hiding (class IsDocument) as Exports
+import HTML.DocumentOrShadowRoot as Exports
 
 class (DOM.Document.IsDocument a, IsDocumentOrShadowRoot a) <= IsDocument a
 

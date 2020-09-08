@@ -1,14 +1,24 @@
 module HTML.HTMLElement
-  ( module DOM.Element
-  , module HTML.ElementContentEditable
-  , module HTML.HTMLOrSVGElement
+  ( module Exports
   , class IsHTMLElement
   , HTMLElement
   ) where
 
 import DOM.Element
-import HTML.ElementContentEditable
-import HTML.HTMLOrSVGElement
+  ( class IsChildNode
+  , class IsElement
+  , class IsEventTarget
+  , class IsNode
+  , class IsNonDocumentTypeChildNode
+  , class IsParentNode
+  , class IsSlottable
+  )
+import HTML.ElementContentEditable (class IsElementContentEditable)
+import HTML.HTMLOrSVGElement (class IsHTMLOrSVGElement)
+-- EXPORTS
+import DOM.Element as Exports
+import HTML.ElementContentEditable as Exports
+import HTML.HTMLOrSVGElement as Exports
 
 class (IsElement a, IsElementContentEditable a, IsHTMLOrSVGElement a) <= IsHTMLElement a
 

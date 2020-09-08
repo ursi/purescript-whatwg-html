@@ -1,13 +1,15 @@
 module DOM.CharacterData
-  ( module DOM.ChildNode
-  , module DOM.Node
-  , module DOM.NonDocumentTypeChildNode
+  ( module Exports
   , class IsCharacterData
   ) where
 
 import DOM.ChildNode (class IsChildNode)
 import DOM.Node (class IsNode)
 import DOM.NonDocumentTypeChildNode (class IsNonDocumentTypeChildNode)
+-- EXPORTS
+import DOM.ChildNode as Exports
+import DOM.Node as Exports
+import DOM.NonDocumentTypeChildNode as Exports
 
 class (IsChildNode a, IsNode a, IsNonDocumentTypeChildNode a) <= IsCharacterData a
 

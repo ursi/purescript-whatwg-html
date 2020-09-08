@@ -1,10 +1,5 @@
 module DOM.Text
-  ( module DOM.ChildNode
-  , module DOM.CharacterData
-  , module DOM.EventTarget
-  , module DOM.Node
-  , module DOM.NonDocumentTypeChildNode
-  , module DOM.Slottable
+  ( module Exports
   , class IsText
   , Text
   ) where
@@ -15,6 +10,9 @@ import DOM.EventTarget (class IsEventTarget)
 import DOM.Node (class IsNode)
 import DOM.NonDocumentTypeChildNode (class IsNonDocumentTypeChildNode)
 import DOM.Slottable (class IsSlottable)
+-- EXPORTS
+import DOM.CharacterData as Exports
+import DOM.Slottable as Exports
 
 class (IsCharacterData a, IsSlottable a) <= IsText a
 

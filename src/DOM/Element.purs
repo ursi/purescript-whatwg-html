@@ -1,9 +1,5 @@
 module DOM.Element
-  ( module DOM.ChildNode
-  , module DOM.Node
-  , module DOM.NonDocumentTypeChildNode
-  , module DOM.ParentNode
-  , module DOM.Slottable
+  ( module Exports
   , class IsElement
   , Element
   , setAttribute
@@ -12,11 +8,17 @@ module DOM.Element
   ) where
 
 import MasonPrelude
-import DOM.ChildNode
-import DOM.Node
-import DOM.NonDocumentTypeChildNode
-import DOM.ParentNode
-import DOM.Slottable
+import DOM.ChildNode (class IsChildNode)
+import DOM.Node (class IsEventTarget, class IsNode)
+import DOM.NonDocumentTypeChildNode (class IsNonDocumentTypeChildNode)
+import DOM.ParentNode (class IsParentNode)
+import DOM.Slottable (class IsSlottable)
+-- EXPORTS
+import DOM.ChildNode as Exports
+import DOM.Node as Exports
+import DOM.NonDocumentTypeChildNode as Exports
+import DOM.ParentNode as Exports
+import DOM.Slottable as Exports
 
 class (IsChildNode a, IsNode a, IsNonDocumentTypeChildNode a, IsParentNode a, IsSlottable a) <= IsElement a
 
