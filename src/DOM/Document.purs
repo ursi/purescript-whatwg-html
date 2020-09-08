@@ -20,7 +20,12 @@ import DOM.NonElementParentNode as Exports
 import DOM.ParentNode as Exports
 import DOM.XPathEvaluatorBase as Exports
 
-class (IsNode a, IsNonElementParentNode a, IsParentNode a, IsXPathEvaluatorBase a) <= IsDocument a
+class
+  ( IsNode a
+  , IsNonElementParentNode a
+  , IsParentNode a
+  , IsXPathEvaluatorBase a
+  ) <= IsDocument a
 
 type ElementCreationOptions
   = ( is :: String )

@@ -20,7 +20,13 @@ import DOM.NonDocumentTypeChildNode as Exports
 import DOM.ParentNode as Exports
 import DOM.Slottable as Exports
 
-class (IsChildNode a, IsNode a, IsNonDocumentTypeChildNode a, IsParentNode a, IsSlottable a) <= IsElement a
+class
+  ( IsChildNode a
+  , IsNode a
+  , IsNonDocumentTypeChildNode a
+  , IsParentNode a
+  , IsSlottable a
+  ) <= IsElement a
 
 data Element
 

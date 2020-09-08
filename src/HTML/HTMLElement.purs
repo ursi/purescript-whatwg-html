@@ -20,7 +20,11 @@ import DOM.Element as Exports
 import HTML.ElementContentEditable as Exports
 import HTML.HTMLOrSVGElement as Exports
 
-class (IsElement a, IsElementContentEditable a, IsHTMLOrSVGElement a) <= IsHTMLElement a
+class
+  ( IsElement a
+  , IsElementContentEditable a
+  , IsHTMLOrSVGElement a
+  ) <= IsHTMLElement a
 
 data HTMLElement
 
