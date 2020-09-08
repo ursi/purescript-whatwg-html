@@ -1,6 +1,6 @@
 module DOM.XPathEvaluatorBase where
 
-class IsXPathEvaluatorBase a
+class XPathEvaluatorBase a
 
 {-
 callback interface XPathNSResolver {

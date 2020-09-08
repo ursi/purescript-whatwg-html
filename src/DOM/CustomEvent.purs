@@ -1,13 +1,6 @@
-module DOM.CustomEvent
-  ( module Exports
-  , class IsCustomEvent
-  ) where
+module DOM.CustomEvent ( DOM.CustomEvent.Types) where
 
-import DOM.Event (class IsEvent)
--- EXPORTS
-import DOM.Event as Exports
-
-class IsEvent a <= IsCustomEvent a
+import DOM.CustomEvent.Types (class IsCustomEvent, ToCustomEvent, CustomEvent, toCustomEvent)
 
 {-
 interface CustomEvent : Event {

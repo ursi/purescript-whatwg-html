@@ -1,17 +1,14 @@
-module DOM.CharacterData
-  ( module Exports
-  , class IsCharacterData
-  ) where
+module DOM.CharacterData (class IsCharacterData) where
 
-import DOM.ChildNode (class IsChildNode)
-import DOM.Node (class IsNode)
-import DOM.NonDocumentTypeChildNode (class IsNonDocumentTypeChildNode)
--- EXPORTS
-import DOM.ChildNode as Exports
-import DOM.Node as Exports
-import DOM.NonDocumentTypeChildNode as Exports
+import DOM.ChildNode (class ChildNode)
+import DOM.Node.Types (class IsNode)
+import DOM.NonDocumentTypeChildNode (class NonDocumentTypeChildNode)
 
-class (IsChildNode a, IsNode a, IsNonDocumentTypeChildNode a) <= IsCharacterData a
+class
+  ( ChildNode a
+  , IsNode a
+  , NonDocumentTypeChildNode a
+  ) <= IsCharacterData a
 
 {-
 interface CharacterData : Node {

@@ -1,22 +1,18 @@
 module DOM.EventTarget
-  ( class IsEventTarget
-  , class EventListenerOptions
+  ( module DOM.EventTarget.Types
   , class AddEventListenerOptions
-  , EventTarget
+  , class AddEventListenerOptionsR
+  , class EventListenerOptions
+  , class EventListenerOptionsR
   , addEventListener
   , removeEventListener
   ) where
 
 import MasonPrelude
+import DOM.EventTarget.Types (class IsEventTarget, EventTarget)
 import DOM.Event (class IsEvent)
 import Optional (class Optional)
 import Prim.Row (class Union)
-
-class IsEventTarget a
-
-data EventTarget
-
-instance eventTarget :: IsEventTarget EventTarget
 
 class EventListenerOptionsR (r :: # Type)
 

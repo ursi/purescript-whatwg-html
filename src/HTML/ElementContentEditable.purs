@@ -1,6 +1,6 @@
 module HTML.ElementContentEditable where
 
-class IsElementContentEditable a
+class ElementContentEditable a
 
 {-
 interface mixin ElementContentEditable {

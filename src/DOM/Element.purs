@@ -1,48 +1,12 @@
 module DOM.Element
-  ( module Exports
-  , class IsElement
-  , Element
+  ( module DOM.Element.Types
   , setAttribute
   , tagName
   , removeAttribute
   ) where
 
 import MasonPrelude
-import DOM.ChildNode (class IsChildNode)
-import DOM.Node (class IsEventTarget, class IsNode)
-import DOM.NonDocumentTypeChildNode (class IsNonDocumentTypeChildNode)
-import DOM.ParentNode (class IsParentNode)
-import DOM.Slottable (class IsSlottable)
--- EXPORTS
-import DOM.ChildNode as Exports
-import DOM.Node as Exports
-import DOM.NonDocumentTypeChildNode as Exports
-import DOM.ParentNode as Exports
-import DOM.Slottable as Exports
-
-class
-  ( IsChildNode a
-  , IsNode a
-  , IsNonDocumentTypeChildNode a
-  , IsParentNode a
-  , IsSlottable a
-  ) <= IsElement a
-
-data Element
-
-instance childNode :: IsChildNode Element
-
-instance eventTarget :: IsEventTarget Element
-
-instance element :: IsElement Element
-
-instance node :: IsNode Element
-
-instance nonDocumentTypeChildNode :: IsNonDocumentTypeChildNode Element
-
-instance parentNode :: IsParentNode Element
-
-instance slottable :: IsSlottable Element
+import DOM.Element.Types (class IsElement, class ToElement, Element, toElement)
 
 {-
 interface Element : Node {

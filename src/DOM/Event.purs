@@ -1,10 +1,6 @@
-module DOM.Event where
+module DOM.Event (module DOM.Event.Types) where
 
-class IsEvent a
-
-data Event
-
-instance event :: IsEvent Event
+import DOM.Event.Types (class IsEvent, Event)
 
 {-
 interface Event {

@@ -1,7 +1,5 @@
 module DOM.Node
-  ( module Exports
-  , class IsNode
-  , Node
+  ( module DOM.Node.Types
   , appendChild
   , firstChild
   , insertBefore
@@ -13,17 +11,12 @@ module DOM.Node
 import MasonPrelude
 import Data.Nullable (Nullable)
 import Data.Nullable as Nullable
-import DOM.EventTarget (class IsEventTarget)
--- EXPORTS
-import DOM.EventTarget as Exports
-
-class IsEventTarget a <= IsNode a
-
-data Node
-
-instance eventTarget :: IsEventTarget Node
-
-instance node :: IsNode Node
+import DOM.Node.Types
+  ( class IsNode
+  , class ToNode
+  , Node
+  , toNode
+  )
 
 {-
 interface Node : EventTarget {

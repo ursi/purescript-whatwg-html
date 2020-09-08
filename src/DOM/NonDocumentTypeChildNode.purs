@@ -1,6 +1,6 @@
 module DOM.NonDocumentTypeChildNode where
 
-class IsNonDocumentTypeChildNode a
+class NonDocumentTypeChildNode a
 
 {-
 interface mixin NonDocumentTypeChildNode {

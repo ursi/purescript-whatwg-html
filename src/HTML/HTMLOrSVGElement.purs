@@ -1,6 +1,6 @@
 module HTML.HTMLOrSVGElement where
 
-class IsHTMLOrSVGElement a
+class HTMLOrSVGElement a
 
 {-
 interface mixin HTMLOrSVGElement {

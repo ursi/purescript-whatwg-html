@@ -1,6 +1,6 @@
 module DOM.NonElementParentNode where
 
-class IsNonElementParentNode a
+class NonElementParentNode a
 
 {-
 interface mixin NonElementParentNode {

@@ -1,6 +1,6 @@
 module DOM.ChildNode where
 
-class IsChildNode a
+class ChildNode a
 
 {-
 interface mixin ChildNode {

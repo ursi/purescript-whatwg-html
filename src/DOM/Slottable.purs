@@ -1,6 +1,6 @@
 module DOM.Slottable where
 
-class IsSlottable a
+class Slottable a
 
 {-
 interface mixin Slottable {

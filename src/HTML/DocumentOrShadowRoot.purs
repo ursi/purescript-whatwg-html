@@ -1,6 +1,6 @@
 module HTML.DocumentOrShadowRoot where
 
-class IsDocumentOrShadowRoot a
+class DocumentOrShadowRoot a
 
 {-
 partial interface mixin DocumentOrShadowRoot {

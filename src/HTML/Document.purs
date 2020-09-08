@@ -1,7 +1,5 @@
 module HTML.Document
-  ( module Exports
-  , class IsDocument
-  , Document
+  ( module HTML.Document.Types
   , body
   , unsafeBody
   ) where
@@ -9,35 +7,8 @@ module HTML.Document
 import MasonPrelude
 import Data.Nullable (Nullable)
 import Data.Nullable as Nullable
-import DOM.Document as DOM.Document
-import DOM.NonElementParentNode (class IsNonElementParentNode)
-import DOM.ParentNode (class IsParentNode)
-import DOM.XPathEvaluatorBase (class IsXPathEvaluatorBase)
-import HTML.HTMLElement (class IsEventTarget, class IsNode, HTMLElement)
-import HTML.DocumentOrShadowRoot (class IsDocumentOrShadowRoot)
--- EXPORTS
-import DOM.Document hiding (class IsDocument) as Exports
-import HTML.DocumentOrShadowRoot as Exports
-
-class (DOM.Document.IsDocument a, IsDocumentOrShadowRoot a) <= IsDocument a
-
-data Document
-
-instance document :: IsDocument Document
-
-instance domDocument :: DOM.Document.IsDocument Document
-
-instance documentOrShadowRoot :: IsDocumentOrShadowRoot Document
-
-instance eventTarget :: IsEventTarget Document
-
-instance node :: IsNode Document
-
-instance nonElementParentNode :: IsNonElementParentNode Document
-
-instance parentNode :: IsParentNode Document
-
-instance xPathEvaluatorBase :: IsXPathEvaluatorBase Document
+import HTML.Document.Types (class IsDocument, class ToDocument, Document, toDocument)
+import HTML.HTMLElement (HTMLElement)
 
 {-
 enum DocumentReadyState { "loading", "interactive", "complete" };
