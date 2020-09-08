@@ -35,7 +35,8 @@ foreign import bodyImpl :: ∀ a. a -> Effect (Nullable HTMLElement)
 body :: ∀ a. IsDocument a => a -> Effect (Maybe HTMLElement)
 body = map Nullable.toMaybe <. bodyImpl
 
-foreign import unsafeBody :: ∀ a. IsDocument a => a -> Effect HTMLElement
+unsafeBody :: ∀ a. IsDocument a => a -> Effect HTMLElement
+unsafeBody = map unsafeCoerce <. bodyImpl
 
 {-
   readonly attribute HTMLHeadElement? head;
