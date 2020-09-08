@@ -1,6 +1,6 @@
-module DOM.CustomEvent ( DOM.CustomEvent.Types) where
+module DOM.CustomEvent (module DOM.CustomEvent.Types) where
 
-import DOM.CustomEvent.Types (class IsCustomEvent, ToCustomEvent, CustomEvent, toCustomEvent)
+import DOM.CustomEvent.Types (class IsCustomEvent, class ToCustomEvent, CustomEvent, toCustomEvent)
 
 {-
 interface CustomEvent : Event {
