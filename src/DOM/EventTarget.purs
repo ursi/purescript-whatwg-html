@@ -7,6 +7,10 @@ import Prim.Row (class Union)
 
 class IsEventTarget a
 
+data EventTarget
+
+instance eventTarget :: IsEventTarget EventTarget
+
 class EventListenerOptionsR (r :: # Type)
 
 instance eventListenerOptionsR :: (Union () ( capture :: Boolean ) r) => EventListenerOptionsR r
