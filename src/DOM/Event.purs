@@ -1,13 +1,31 @@
-module DOM.Event (module DOM.Event.Types) where
+module DOM.Event
+  ( module DOM.Event.Types
+  , target
+  , unsafeTarget
+  ) where
 
+import MasonPrelude
+import Data.Nullable (Nullable)
+import Data.Nullable as Nullable
 import DOM.Event.Types (class IsEvent, Event)
+import DOM.EventTarget.Types (EventTarget)
 
 {-
 interface Event {
   constructor(DOMString type, optional EventInit eventInitDict = {});
 
   readonly attribute DOMString type;
-  readonly attribute EventTarget? target;
+-}
+-- readonly attribute EventTarget? target;
+foreign import targetImpl :: ∀ a. a -> Effect (Nullable EventTarget)
+
+target :: ∀ a. IsEvent a => a -> Effect (Maybe EventTarget)
+target = map Nullable.toMaybe <. targetImpl
+
+unsafeTarget :: ∀ a. IsEvent a => a -> Effect EventTarget
+unsafeTarget = map unsafeCoerce <. targetImpl
+
+{-
   readonly attribute EventTarget? srcElement; // historical
   readonly attribute EventTarget? currentTarget;
   sequence<EventTarget> composedPath();

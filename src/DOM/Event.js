@@ -1,1 +1,1 @@
-exports.target = () => () => event => () => event.target;
+exports.targetImpl = event => () => event.target;
