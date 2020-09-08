@@ -1,4 +1,11 @@
-module DOM.EventTarget where
+module DOM.EventTarget
+  ( class IsEventTarget
+  , class EventListenerOptions
+  , class AddEventListenerOptions
+  , EventTarget
+  , addEventListener
+  , removeEventListener
+  ) where
 
 import MasonPrelude
 import DOM.Event (class IsEvent)
