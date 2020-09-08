@@ -7,21 +7,30 @@ import Prim.Row (class Union)
 
 class IsEventTarget a
 
-type EventListenerOptionsR
-  = ( capture :: Boolean )
+class EventListenerOptionsR (r :: # Type)
 
-type AddEventListenerOptionsR
-  = ( passive :: Boolean
-    , once :: Boolean
-    )
+instance eventListenerOptionsR :: (Union () ( capture :: Boolean ) r) => EventListenerOptionsR r
 
 class EventListenerOptions (r :: # Type)
 
-instance eventListenerOptions :: Optional EventListenerOptionsR r => EventListenerOptions r
+instance eventListenerOptions :: (EventListenerOptionsR o, Optional o r) => EventListenerOptions r
+
+class AddEventListenerOptionsR (r :: # Type)
+
+instance addEventListenerOptionsR ::
+  ( EventListenerOptionsR r'
+  , Union
+      r'
+      ( passive :: Boolean
+      , once :: Boolean
+      )
+      r
+  ) =>
+  AddEventListenerOptionsR r
 
 class AddEventListenerOptions (r :: # Type)
 
-instance addEventListenerOptions :: (Union EventListenerOptionsR AddEventListenerOptionsR u, Optional u r) => AddEventListenerOptions r
+instance addEventListenerOptions :: (AddEventListenerOptionsR o, Optional o r) => AddEventListenerOptions r
 
 -- undefined addEventListener(DOMString type, EventListener? callback, optional (AddEventListenerOptions or boolean) options = {});
 foreign import addEventListener ::
