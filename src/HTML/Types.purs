@@ -127,6 +127,7 @@ data Document
 class
   ( IsNode a
   , DocumentOrShadowRoot a
+  , GlobalEventHandlers a
   , NonElementParentNode a
   , ParentNode a
   , XPathEvaluatorBase a
@@ -139,6 +140,8 @@ instance isNodeDocument :: IsNode Document
 instance isDocumentDocument :: IsDocument Document
 
 instance documentOrShadowRootDocument :: DocumentOrShadowRoot Document
+
+instance globalEventHandlersDocument :: GlobalEventHandlers Document
 
 instance nonElementParentNodeDocument :: NonElementParentNode Document
 
@@ -194,6 +197,7 @@ data HTMLElement
 class
   ( IsElement a
   , ElementContentEditable a
+  , GlobalEventHandlers a
   , HTMLOrSVGElement a
   ) <= IsHTMLElement a
 
@@ -208,6 +212,8 @@ instance isHTMLElementHTMLElement :: IsHTMLElement HTMLElement
 instance childNodeHTMLElement :: ChildNode HTMLElement
 
 instance elementContentEditableHTMLElement :: ElementContentEditable HTMLElement
+
+instance globalEventHandlersHTMLElement :: GlobalEventHandlers HTMLElement
 
 instance hTMLOrSVGElementHTMLElement :: HTMLOrSVGElement HTMLElement
 
@@ -258,11 +264,16 @@ toMaybeText = unsafeConvert "Text"
 
 data Window
 
-class IsEventTarget a <= IsWindow a
+class
+  ( IsEventTarget a
+  , GlobalEventHandlers a
+  ) <= IsWindow a
 
 instance isEventTargetWindow :: IsEventTarget Window
 
 instance isWindowWindow :: IsWindow Window
+
+instance globalEventHandlersWindow :: GlobalEventHandlers Window
 
 class MaybeWindow a
 

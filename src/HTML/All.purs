@@ -20,5 +20,6 @@ import HTML.Document as Exports
 import HTML.HTMLElement as Exports
 import HTML.Window as Exports
 import HTML.Mixin.DocumentOrShadowRoot as Exports
+import HTML.Mixin.GlobalEventHandlers as Exports
 import HTML.Mixin.ElementContentEditable as Exports
 import HTML.Mixin.HTMLOrSVGElement as Exports
