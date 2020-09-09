@@ -5,3 +5,5 @@ exports.addEventListener = () => () => () => type => callback => options => targ
 exports.removeEventListener = () => () => () => type => callback => options => target => () => {
 	target.removeEventListener(type, callback, options);
 };
+
+exports.dispatchEvent = () => () => event => target => () => target.dispatchEvent(event);

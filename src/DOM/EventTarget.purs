@@ -3,6 +3,7 @@ module DOM.EventTarget
   , AddEventListenerOptions
   , EventListenerOptions
   , addEventListener
+  , dispatchEvent
   , removeEventListener
   ) where
 
@@ -44,8 +45,5 @@ foreign import removeEventListener ::
   a ->
   Effect Unit
 
-{-
-interface EventTarget {
-  boolean dispatchEvent(Event event);
-};
--}
+-- boolean dispatchEvent(Event event);
+foreign import dispatchEvent :: ∀ a b. IsEvent a => IsEventTarget b => a -> b -> Effect Boolean
