@@ -8,7 +8,7 @@ module DOM.EventTarget
   ) where
 
 import MasonPrelude
-import HTML.Types (class IsEvent, class IsEventTarget)
+import HTML.Types (class IsEvent, class IsEventTarget, Event)
 import Optional (class Optional)
 import HTML.Types (class IsEventTarget, EventTarget, toEventTarget) as Exports
 
@@ -23,24 +23,22 @@ type AddEventListenerOptions
 
 -- undefined addEventListener(DOMString type, EventListener? callback, optional (AddEventListenerOptions or boolean) options = {});
 foreign import addEventListener ::
-  ∀ a b c r.
+  ∀ a b r.
   IsEventTarget a =>
-  IsEvent b =>
   Optional AddEventListenerOptions r =>
   String ->
-  (EffectFn1 b c) ->
+  (EffectFn1 Event b) ->
   Record r ->
   a ->
   Effect Unit
 
 -- undefined removeEventListener(DOMString type, EventListener? callback, optional (EventListenerOptions or boolean) options = {});
 foreign import removeEventListener ::
-  ∀ a b c r.
+  ∀ a b r.
   IsEventTarget a =>
-  IsEvent b =>
   Optional EventListenerOptions r =>
   String ->
-  (EffectFn1 b c) ->
+  (EffectFn1 Event b) ->
   Record r ->
   a ->
   Effect Unit
