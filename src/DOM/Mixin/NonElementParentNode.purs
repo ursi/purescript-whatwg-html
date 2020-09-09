@@ -1,4 +1,4 @@
-module DOM.NonElementParentNode where
+module DOM.Mixin.NonElementParentNode where
 
 class NonElementParentNode a
 

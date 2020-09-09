@@ -1,6 +1,11 @@
-module DOM.CustomEvent (module DOM.CustomEvent.Types) where
+module DOM.CustomEvent (module HTML.Types) where
 
-import DOM.CustomEvent.Types (class IsCustomEvent, class ToCustomEvent, CustomEvent, toCustomEvent)
+import HTML.Types
+  ( class IsCustomEvent
+  , class MaybeCustomEvent
+  , CustomEvent
+  , toMaybeCustomEvent
+  )
 
 {-
 interface CustomEvent : Event {

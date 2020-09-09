@@ -1,12 +1,18 @@
 module DOM.Element
-  ( module DOM.Element.Types
+  ( module HTML.Types
   , setAttribute
   , tagName
   , removeAttribute
   ) where
 
 import MasonPrelude
-import DOM.Element.Types (class IsElement, class ToElement, Element, toElement)
+import HTML.Types
+  ( class IsElement
+  , class MaybeElement
+  , Element
+  , toElement
+  , toMaybeElement
+  )
 
 {-
 interface Element : Node {

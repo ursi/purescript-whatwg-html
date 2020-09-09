@@ -1,4 +1,4 @@
-module DOM.Slottable where
+module DOM.Mixin.Slottable where
 
 class Slottable a
 

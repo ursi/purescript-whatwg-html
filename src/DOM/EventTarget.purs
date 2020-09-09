@@ -1,5 +1,5 @@
 module DOM.EventTarget
-  ( module DOM.EventTarget.Types
+  ( module Exports
   , AddEventListenerOptions
   , EventListenerOptions
   , addEventListener
@@ -7,9 +7,9 @@ module DOM.EventTarget
   ) where
 
 import MasonPrelude
-import DOM.EventTarget.Types (class IsEventTarget, EventTarget)
-import DOM.Event (class IsEvent)
+import HTML.Types (class IsEvent, class IsEventTarget)
 import Optional (class Optional)
+import HTML.Types (class IsEventTarget, EventTarget, toEventTarget) as Exports
 
 type EventListenerOptions
   = ( capture :: Boolean )

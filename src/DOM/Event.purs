@@ -1,5 +1,5 @@
 module DOM.Event
-  ( module DOM.Event.Types
+  ( module Exports
   , target
   , unsafeTarget
   ) where
@@ -7,8 +7,8 @@ module DOM.Event
 import MasonPrelude
 import Data.Nullable (Nullable)
 import Data.Nullable as Nullable
-import DOM.Event.Types (class IsEvent, Event)
-import DOM.EventTarget.Types (EventTarget)
+import HTML.Types (class IsEvent, EventTarget)
+import HTML.Types (class IsEvent, Event, toEvent) as Exports
 
 {-
 interface Event {

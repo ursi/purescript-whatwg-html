@@ -1,4 +1,4 @@
-module HTML.ElementContentEditable where
+module HTML.Mixin.ElementContentEditable where
 
 class ElementContentEditable a
 

@@ -1,4 +1,4 @@
-module HTML.HTMLOrSVGElement where
+module HTML.Mixin.HTMLOrSVGElement where
 
 class HTMLOrSVGElement a
 

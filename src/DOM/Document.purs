@@ -1,25 +1,12 @@
 module DOM.Document
-  ( class IsDocument
-  , ElementCreationOptions
+  ( ElementCreationOptions
   , createElement
   , createTextNode
   ) where
 
 import MasonPrelude
-import DOM.Element (Element)
-import DOM.Node (class IsNode)
-import DOM.NonElementParentNode (class NonElementParentNode)
-import DOM.ParentNode (class ParentNode)
-import DOM.Text (Text)
-import DOM.XPathEvaluatorBase (class XPathEvaluatorBase)
+import HTML.Types (class IsDocument, Element, Text)
 import Optional (class Optional)
-
-class
-  ( IsNode a
-  , NonElementParentNode a
-  , ParentNode a
-  , XPathEvaluatorBase a
-  ) <= IsDocument a
 
 type ElementCreationOptions
   = ( is :: String )

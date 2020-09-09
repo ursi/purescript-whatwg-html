@@ -1,6 +1,12 @@
-module HTML.HTMLElement (module HTML.HTMLElement.Types) where
+module HTML.HTMLElement (module HTML.Types) where
 
-import HTML.HTMLElement.Types (class IsHTMLElement, class ToHTMLElement, HTMLElement, toHTMLElement)
+import HTML.Types
+  ( class IsHTMLElement
+  , class MaybeHTMLElement
+  , HTMLElement
+  , toHTMLElement
+  , toMaybeHTMLElement
+  )
 
 {-
 interface HTMLElement : Element {

@@ -4,12 +4,14 @@ module HTML.Window
   ) where
 
 import MasonPrelude
-import DOM.EventTarget (class IsEventTarget)
-import HTML.Document (Document)
--- EXPORTS
-import DOM.EventTarget as Exports
-
-class IsEventTarget a <= IsWindow a
+import HTML.Types (Document)
+import HTML.Types
+  ( class IsWindow
+  , class MaybeWindow
+  , Window
+  , toMaybeWindow
+  )
+  as Exports
 
 {-
 interface Window : EventTarget {

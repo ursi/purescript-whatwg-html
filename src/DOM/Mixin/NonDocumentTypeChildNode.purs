@@ -1,4 +1,4 @@
-module DOM.NonDocumentTypeChildNode where
+module DOM.Mixin.NonDocumentTypeChildNode where
 
 class NonDocumentTypeChildNode a
 

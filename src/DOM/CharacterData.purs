@@ -1,14 +1,6 @@
-module DOM.CharacterData (class IsCharacterData) where
+module DOM.CharacterData (module HTML.Types) where
 
-import DOM.ChildNode (class ChildNode)
-import DOM.Node.Types (class IsNode)
-import DOM.NonDocumentTypeChildNode (class NonDocumentTypeChildNode)
-
-class
-  ( ChildNode a
-  , IsNode a
-  , NonDocumentTypeChildNode a
-  ) <= IsCharacterData a
+import HTML.Types (class IsCharacterData)
 
 {-
 interface CharacterData : Node {

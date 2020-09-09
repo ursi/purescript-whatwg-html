@@ -1,5 +1,5 @@
 module HTML.Document
-  ( module HTML.Document.Types
+  ( module Exports
   , body
   , unsafeBody
   ) where
@@ -7,8 +7,14 @@ module HTML.Document
 import MasonPrelude
 import Data.Nullable (Nullable)
 import Data.Nullable as Nullable
-import HTML.Document.Types (class IsDocument, class ToDocument, Document, toDocument)
-import HTML.HTMLElement (HTMLElement)
+import HTML.Types (class IsDocument, HTMLElement)
+import HTML.Types
+  ( class IsDocument
+  , class MaybeDocument
+  , Document
+  , toMaybeDocument
+  )
+  as Exports
 
 {-
 enum DocumentReadyState { "loading", "interactive", "complete" };

@@ -1,4 +1,4 @@
-module HTML.DocumentOrShadowRoot where
+module HTML.Mixin.DocumentOrShadowRoot where
 
 class DocumentOrShadowRoot a
 

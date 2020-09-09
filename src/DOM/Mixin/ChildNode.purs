@@ -1,4 +1,4 @@
-module DOM.ChildNode where
+module DOM.Mixin.ChildNode where
 
 class ChildNode a
 

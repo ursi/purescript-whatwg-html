@@ -1,12 +1,10 @@
-module DOM.Text
-  ( module DOM.Text.Types
-  ) where
+module DOM.Text (module HTML.Types) where
 
-import DOM.Text.Types
+import HTML.Types
   ( class IsText
-  , class ToText
+  , class MaybeText
   , Text
-  , toText
+  , toMaybeText
   )
 
 {-

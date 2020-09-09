@@ -1,5 +1,5 @@
 module DOM.Node
-  ( module DOM.Node.Types
+  ( module HTML.Types
   , appendChild
   , firstChild
   , insertBefore
@@ -11,11 +11,12 @@ module DOM.Node
 import MasonPrelude
 import Data.Nullable (Nullable)
 import Data.Nullable as Nullable
-import DOM.Node.Types
+import HTML.Types
   ( class IsNode
-  , class ToNode
+  , class MaybeNode
   , Node
   , toNode
+  , toMaybeNode
   )
 
 {-

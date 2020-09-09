@@ -1,4 +1,4 @@
-module DOM.XPathEvaluatorBase where
+module DOM.Mixin.XPathEvaluatorBase where
 
 class XPathEvaluatorBase a
 
