@@ -28,6 +28,10 @@ module HTML.Types
   , class MaybeHTMLElement
   , toHTMLElement
   , toMaybeHTMLElement
+  , class IsHTMLInputElement
+  , class MaybeHTMLInputElement
+  , HTMLInputElement
+  , toMaybeHTMLInputElement
   , class IsCharacterData
   , Text
   , class IsText
@@ -131,6 +135,8 @@ instance maybeElementNode :: MaybeElement Node
 
 instance maybeHTMLElementNode :: MaybeHTMLElement Node
 
+instance maybeHTMLInputElementNode :: MaybeHTMLInputElement Node
+
 instance maybeTextNode :: MaybeText Node
 
 toNode :: ∀ a. IsNode a => a -> Node
@@ -203,6 +209,8 @@ instance maybeElementElement :: MaybeElement Element
 
 instance maybeHTMLElementElement :: MaybeHTMLElement Element
 
+instance maybeHTMLInputElementElement :: MaybeHTMLInputElement Element
+
 toElement :: ∀ a. IsElement a => a -> Element
 toElement = unsafeCoerce
 
@@ -240,15 +248,52 @@ instance parentNodeHTMLElement :: ParentNode HTMLElement
 
 instance slottableHTMLElement :: Slottable HTMLElement
 
-class MaybeHTMLElement a
+class MaybeHTMLInputElement a <= MaybeHTMLElement a
 
 instance maybeHTMLElementHTMLElement :: MaybeHTMLElement HTMLElement
+
+instance maybeHTMLInputElementHTMLElement :: MaybeHTMLInputElement HTMLElement
 
 toHTMLElement :: ∀ a. IsHTMLElement a => a -> HTMLElement
 toHTMLElement = unsafeCoerce
 
 toMaybeHTMLElement :: ∀ a. MaybeHTMLElement a => a -> Maybe HTMLElement
 toMaybeHTMLElement = unsafeConvert "HTMLElement"
+
+data HTMLInputElement
+
+class IsHTMLElement a <= IsHTMLInputElement a
+
+instance isEventTargetHTMLInputElement :: IsEventTarget HTMLInputElement
+
+instance isNodeHTMLInputElement :: IsNode HTMLInputElement
+
+instance isElementHTMLInputElement :: IsElement HTMLInputElement
+
+instance hTMLElementHTMLInputElement :: IsHTMLElement HTMLInputElement
+
+instance isHTMLInputElementHTMLInputElement :: IsHTMLInputElement HTMLInputElement
+
+instance childNodeHTMLInputElement :: ChildNode HTMLInputElement
+
+instance elementContentEditableHTMLInputElement :: ElementContentEditable HTMLInputElement
+
+instance globalEventHandlersHTMLInputElement :: GlobalEventHandlers HTMLInputElement
+
+instance hTMLOrSVGElementHTMLInputElement :: HTMLOrSVGElement HTMLInputElement
+
+instance nonDocumentTypeChildNodeHTMLInputElement :: NonDocumentTypeChildNode HTMLInputElement
+
+instance parentNodeHTMLInputElement :: ParentNode HTMLInputElement
+
+instance slottableHTMLInputElement :: Slottable HTMLInputElement
+
+class MaybeHTMLInputElement a
+
+instance maybeHTMLInputElementHTMLInputElement :: MaybeHTMLInputElement HTMLInputElement
+
+toMaybeHTMLInputElement :: ∀ a. MaybeHTMLInputElement a => a -> Maybe HTMLInputElement
+toMaybeHTMLInputElement = unsafeConvert "HTMLInputElement"
 
 class
   ( IsNode a

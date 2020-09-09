@@ -1,6 +1,7 @@
 module HTML.Document
   ( module Exports
   , body
+  , createHTMLInputElement
   , head
   , unsafeBody
   , unsafeHead
@@ -9,7 +10,9 @@ module HTML.Document
 import MasonPrelude
 import Data.Nullable (Nullable)
 import Data.Nullable as Nullable
-import HTML.Types (class IsDocument, HTMLElement)
+import DOM.Document (ElementCreationOptions, createElement)
+import HTML.Types (class IsDocument, HTMLElement, HTMLInputElement)
+import Optional (class Optional)
 import HTML.Types
   ( class IsDocument
   , class MaybeDocument
@@ -17,6 +20,15 @@ import HTML.Types
   , toMaybeDocument
   )
   as Exports
+
+createHTMLInputElement ::
+  ∀ a r.
+  IsDocument a =>
+  Optional ElementCreationOptions r =>
+  Record r ->
+  a ->
+  Effect HTMLInputElement
+createHTMLInputElement = map unsafeCoerce <.. createElement "input"
 
 {-
 enum DocumentReadyState { "loading", "interactive", "complete" };
