@@ -1,5 +1,7 @@
 module DOM.Event
   ( module Exports
+  , EventInit
+  , new
   , target
   , unsafeTarget
   ) where
@@ -7,12 +9,21 @@ module DOM.Event
 import MasonPrelude
 import Data.Nullable (Nullable)
 import Data.Nullable as Nullable
-import HTML.Types (class IsEvent, EventTarget)
+import HTML.Types (class IsEvent, Event, EventTarget)
 import HTML.Types (class IsEvent, Event, toEvent) as Exports
+import Optional (class Optional)
+
+type EventInit
+  = ( bubbles :: Boolean
+    , cancelable :: Boolean
+    , composed :: Boolean
+    )
+
+-- constructor(DOMString type, optional EventInit eventInitDict = {});
+foreign import new :: ∀ r. Optional EventInit r => String -> Record r -> Effect Event
 
 {-
 interface Event {
-  constructor(DOMString type, optional EventInit eventInitDict = {});
 
   readonly attribute DOMString type;
 -}
@@ -51,11 +62,5 @@ unsafeTarget = map unsafeCoerce <. targetImpl
   readonly attribute DOMHighResTimeStamp timeStamp;
 
   undefined initEvent(DOMString type, optional boolean bubbles = false, optional boolean cancelable = false); // historical
-};
-
-dictionary EventInit {
-  boolean bubbles = false;
-  boolean cancelable = false;
-  boolean composed = false;
 };
 -}

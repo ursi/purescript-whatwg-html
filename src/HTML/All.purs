@@ -5,7 +5,7 @@ import DOM.CharacterData as Exports
 import DOM.CustomEvent as Exports
 import DOM.Document as Exports
 import DOM.Element as Exports
-import DOM.Event as Exports
+import DOM.Event hiding (new) as Exports
 import DOM.EventTarget as Exports
 import DOM.Node as Exports
 import DOM.Text hiding (new) as Exports
