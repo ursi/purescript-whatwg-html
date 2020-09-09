@@ -1,7 +1,5 @@
 module DOM.Mixin.ParentNode where
 
-class ParentNode a
-
 {-
 interface mixin ParentNode {
   [SameObject] readonly attribute HTMLCollection children;

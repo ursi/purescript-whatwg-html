@@ -38,18 +38,19 @@ module HTML.Types
   , class IsWindow
   , class MaybeWindow
   , toMaybeWindow
+  , class ChildNode
+  , class NonDocumentTypeChildNode
+  , class NonElementParentNode
+  , class ParentNode
+  , class Slottable
+  , class XPathEvaluatorBase
+  , class DocumentOrShadowRoot
+  , class ElementContentEditable
+  , class GlobalEventHandlers
+  , class HTMLOrSVGElement
   ) where
 
 import MasonPrelude
-import DOM.Mixin.ChildNode (class ChildNode)
-import DOM.Mixin.NonDocumentTypeChildNode (class NonDocumentTypeChildNode)
-import DOM.Mixin.NonElementParentNode (class NonElementParentNode)
-import DOM.Mixin.ParentNode (class ParentNode)
-import DOM.Mixin.Slottable (class Slottable)
-import DOM.Mixin.XPathEvaluatorBase (class XPathEvaluatorBase)
-import HTML.Mixin.DocumentOrShadowRoot (class DocumentOrShadowRoot)
-import HTML.Mixin.ElementContentEditable (class ElementContentEditable)
-import HTML.Mixin.HTMLOrSVGElement (class HTMLOrSVGElement)
 import Util (unsafeConvert)
 
 data Event
@@ -269,3 +270,24 @@ instance maybeWindowWindow :: MaybeWindow Window
 
 toMaybeWindow :: ∀ a. MaybeWindow a => a -> Maybe Window
 toMaybeWindow = unsafeConvert "Window"
+
+-- Mixins
+class ChildNode a
+
+class NonDocumentTypeChildNode a
+
+class NonElementParentNode a
+
+class ParentNode a
+
+class Slottable a
+
+class XPathEvaluatorBase a
+
+class DocumentOrShadowRoot a
+
+class ElementContentEditable a
+
+class GlobalEventHandlers a
+
+class HTMLOrSVGElement a

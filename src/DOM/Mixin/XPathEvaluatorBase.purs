@@ -1,7 +1,5 @@
 module DOM.Mixin.XPathEvaluatorBase where
 
-class XPathEvaluatorBase a
-
 {-
 callback interface XPathNSResolver {
   DOMString? lookupNamespaceURI(DOMString? prefix);

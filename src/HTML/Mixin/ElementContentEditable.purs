@@ -1,7 +1,5 @@
 module HTML.Mixin.ElementContentEditable where
 
-class ElementContentEditable a
-
 {-
 interface mixin ElementContentEditable {
   [CEReactions] attribute DOMString contentEditable;

@@ -1,7 +1,5 @@
 module HTML.Mixin.HTMLOrSVGElement where
 
-class HTMLOrSVGElement a
-
 {-
 interface mixin HTMLOrSVGElement {
   [SameObject] readonly attribute DOMStringMap dataset;

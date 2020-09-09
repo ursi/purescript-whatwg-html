@@ -1,7 +1,5 @@
 module DOM.Mixin.NonDocumentTypeChildNode where
 
-class NonDocumentTypeChildNode a
-
 {-
 interface mixin NonDocumentTypeChildNode {
   readonly attribute Element? previousElementSibling;
