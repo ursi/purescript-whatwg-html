@@ -8,7 +8,7 @@ import DOM.Element as Exports
 import DOM.Event as Exports
 import DOM.EventTarget as Exports
 import DOM.Node as Exports
-import DOM.Text as Exports
+import DOM.Text hiding (new) as Exports
 import DOM.Mixin.ChildNode as Exports
 import DOM.Mixin.NonDocumentTypeChildNode as Exports
 import DOM.Mixin.NonElementParentNode as Exports

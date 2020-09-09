@@ -1,5 +1,9 @@
-module DOM.Text (module HTML.Types) where
+module DOM.Text
+  ( module HTML.Types
+  , new
+  ) where
 
+import MasonPrelude
 import HTML.Types
   ( class IsText
   , class MaybeText
@@ -7,9 +11,11 @@ import HTML.Types
   , toMaybeText
   )
 
+-- constructor(optional DOMString data = "");
+foreign import new :: String -> Effect Text
+
 {-
 interface Text : CharacterData {
-  constructor(optional DOMString data = "");
 
   [NewObject] Text splitText(unsigned long offset);
   readonly attribute DOMString wholeText;
