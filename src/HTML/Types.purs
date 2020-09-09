@@ -1,7 +1,6 @@
 module HTML.Types
   ( Event
   , class IsEvent
-  , class MaybeEvent
   , toEvent
   , CustomEvent
   , class IsCustomEvent
