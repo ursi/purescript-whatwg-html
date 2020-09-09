@@ -89,6 +89,24 @@ class IsEventTarget a
 
 instance isEventTargetEventTarget :: IsEventTarget EventTarget
 
+class (MaybeNode a, MaybeWindow a) <= MaybeEventTarget a
+
+instance maybeEventTargetEventTarget :: MaybeEventTarget EventTarget
+
+instance maybeDocumentEventTarget :: MaybeDocument EventTarget
+
+instance maybeElementEventTarget :: MaybeElement EventTarget
+
+instance maybeHTMLElementEventTarget :: MaybeHTMLElement EventTarget
+
+instance maybeHTMLInputElementEventTarget :: MaybeHTMLInputElement EventTarget
+
+instance maybeNodeEventTarget :: MaybeNode EventTarget
+
+instance maybeTextEventTarget :: MaybeText EventTarget
+
+instance maybeWindowEventTarget :: MaybeWindow EventTarget
+
 toEventTarget :: ∀ a. IsEventTarget a => a -> EventTarget
 toEventTarget = unsafeCoerce
 
