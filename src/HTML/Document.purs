@@ -1,7 +1,9 @@
 module HTML.Document
   ( module Exports
   , body
+  , head
   , unsafeBody
+  , unsafeHead
   ) where
 
 import MasonPrelude
@@ -44,8 +46,16 @@ body = map Nullable.toMaybe <. bodyImpl
 unsafeBody :: ∀ a. IsDocument a => a -> Effect HTMLElement
 unsafeBody = map unsafeCoerce <. bodyImpl
 
+-- readonly attribute HTMLHeadElement? head;
+foreign import headImpl :: ∀ a. a -> Effect (Nullable HTMLElement)
+
+head :: ∀ a. IsDocument a => a -> Effect (Maybe HTMLElement)
+head = map Nullable.toMaybe <. headImpl
+
+unsafeHead :: ∀ a. IsDocument a => a -> Effect HTMLElement
+unsafeHead = map unsafeCoerce <. headImpl
+
 {-
-  readonly attribute HTMLHeadElement? head;
   [SameObject] readonly attribute HTMLCollection images;
   [SameObject] readonly attribute HTMLCollection embeds;
   [SameObject] readonly attribute HTMLCollection plugins;
