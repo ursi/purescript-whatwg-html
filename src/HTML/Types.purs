@@ -6,6 +6,11 @@ module HTML.Types
   , class IsCustomEvent
   , class MaybeCustomEvent
   , toMaybeCustomEvent
+  , UIEvent
+  , class IsUIEvent
+  , class MaybeUIEvent
+  , toUIEvent
+  , toMaybeUIEvent
   , EventTarget
   , class IsEventTarget
   , toEventTarget
@@ -62,11 +67,13 @@ class IsEvent a
 
 instance isEventEvent :: IsEvent Event
 
-class MaybeCustomEvent a <= MaybeEvent a
+class (MaybeCustomEvent a, MaybeUIEvent a) <= MaybeEvent a
 
 instance maybeEventEvent :: MaybeEvent Event
 
 instance maybeCustomEventEvent :: MaybeCustomEvent Event
+
+instance maybeUIEventEvent :: MaybeUIEvent Event
 
 toEvent :: ∀ a. IsEvent a => a -> Event
 toEvent = unsafeCoerce
@@ -85,6 +92,24 @@ instance maybeCustomEventCustomEvent :: MaybeCustomEvent CustomEvent
 
 toMaybeCustomEvent :: ∀ a. MaybeCustomEvent a => a -> Maybe CustomEvent
 toMaybeCustomEvent = unsafeConvert "CustomEvent"
+
+data UIEvent
+
+class IsEvent a <= IsUIEvent a
+
+instance isEventUIEvent :: IsEvent UIEvent
+
+instance isUIEventUIEvent :: IsUIEvent UIEvent
+
+class MaybeUIEvent a
+
+instance maybeUIEventUIEvent :: MaybeUIEvent UIEvent
+
+toUIEvent :: ∀ a. IsUIEvent a => a -> UIEvent
+toUIEvent = unsafeCoerce
+
+toMaybeUIEvent :: ∀ a. MaybeUIEvent a => a -> Maybe UIEvent
+toMaybeUIEvent = unsafeConvert "UIEvent"
 
 data EventTarget
 

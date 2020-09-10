@@ -19,6 +19,7 @@ import DOM.Mixin.XPathEvaluatorBase as Exports
 import HTML.Document as Exports
 import HTML.HTMLElement as Exports
 import HTML.HTMLInputElement as Exports
+import HTML.UIEvent as Exports
 import HTML.Window as Exports
 import HTML.Mixin.DocumentOrShadowRoot as Exports
 import HTML.Mixin.GlobalEventHandlers as Exports
