@@ -7,8 +7,7 @@ module HTML.Window
 import MasonPrelude
 import HTML.Types (Window, Document)
 import HTML.Types
-  ( class IsWindow
-  , class MaybeWindow
+  ( class MaybeWindow
   , Window
   , toMaybeWindow
   )

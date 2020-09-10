@@ -6,8 +6,7 @@ module HTML.HTMLInputElement
 
 import MasonPrelude
 import HTML.Types
-  ( class IsHTMLInputElement
-  , class MaybeHTMLInputElement
+  ( class MaybeHTMLInputElement
   , HTMLInputElement
   , toMaybeHTMLInputElement
   )
@@ -50,9 +49,9 @@ interface HTMLInputElement : HTMLElement {
   [CEReactions] attribute DOMString defaultValue;
 -}
 -- [CEReactions] attribute [LegacyNullToEmptyString] DOMString value;
-foreign import value :: ∀ a. IsHTMLInputElement a => a -> Effect String
+foreign import value :: HTMLInputElement -> Effect String
 
-foreign import setValue :: ∀ a. IsHTMLInputElement a => String -> a -> Effect Unit
+foreign import setValue :: String -> HTMLInputElement -> Effect Unit
 
 {-
   attribute object? valueAsDate;

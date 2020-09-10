@@ -8,8 +8,7 @@ module HTML.MouseEvent
 
 import MasonPrelude
 import HTML.Types
-  ( class IsMouseEvent
-  , class MaybeMouseEvent
+  ( class MaybeMouseEvent
   , MouseEvent
   , toMaybeMouseEvent
   )

@@ -5,7 +5,7 @@ module DOM.Document
   ) where
 
 import MasonPrelude
-import HTML.Types (class IsDocument, Element, Text)
+import HTML.Types (Document, Element, Text)
 import Optional (class Optional)
 
 type ElementCreationOptions
@@ -34,7 +34,7 @@ interface Document : Node {
 -- [CEReactions, NewObject] Element createElement(DOMString localName, optional (DOMString or ElementCreationOptions) options = {});
 foreign import createElementImpl :: ∀ a r. String -> r -> a -> Effect Element
 
-createElement :: ∀ a r. IsDocument a => Optional ElementCreationOptions r => String -> Record r -> a -> Effect Element
+createElement :: ∀ r. Optional ElementCreationOptions r => String -> Record r -> Document -> Effect Element
 createElement = createElementImpl
 
 {-
@@ -42,7 +42,7 @@ createElement = createElementImpl
   [NewObject] DocumentFragment createDocumentFragment();
 -}
 -- [NewObject] Text createTextNode(DOMString data);
-foreign import createTextNode :: ∀ a. IsDocument a => String -> a -> Effect Text
+foreign import createTextNode :: String -> Document -> Effect Text
 
 {-
   [NewObject] CDATASection createCDATASection(DOMString data);

@@ -1,3 +1,4 @@
+-- classes that are defined but not exported are used only to have the compiler enforce proper instances being defined
 module HTML.Types
   ( Event
   , class IsEvent
@@ -12,7 +13,6 @@ module HTML.Types
   , toUIEvent
   , toMaybeUIEvent
   , MouseEvent
-  , class IsMouseEvent
   , class MaybeMouseEvent
   , toMaybeMouseEvent
   , EventTarget
@@ -24,7 +24,6 @@ module HTML.Types
   , toNode
   , toMaybeNode
   , Document
-  , class IsDocument
   , class MaybeDocument
   , toMaybeDocument
   , Element
@@ -37,7 +36,6 @@ module HTML.Types
   , class MaybeHTMLElement
   , toHTMLElement
   , toMaybeHTMLElement
-  , class IsHTMLInputElement
   , class MaybeHTMLInputElement
   , HTMLInputElement
   , toMaybeHTMLInputElement
@@ -47,7 +45,6 @@ module HTML.Types
   , class MaybeText
   , toMaybeText
   , Window
-  , class IsWindow
   , class MaybeWindow
   , toMaybeWindow
   , class ChildNode

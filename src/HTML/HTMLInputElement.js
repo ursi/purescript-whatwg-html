@@ -1,3 +1,3 @@
-exports.value = () => input => () => input.value;
+exports.value = input => () => input.value;
 
-exports.setValue = () => value => input => () => input.value = value;
+exports.setValue = value => input => () => input.value = value;

@@ -11,22 +11,20 @@ import MasonPrelude
 import Data.Nullable (Nullable)
 import Data.Nullable as Nullable
 import DOM.Document (ElementCreationOptions, createElement)
-import HTML.Types (class IsDocument, HTMLElement, HTMLInputElement)
+import HTML.Types (Document, HTMLElement, HTMLInputElement)
 import Optional (class Optional)
 import HTML.Types
-  ( class IsDocument
-  , class MaybeDocument
+  ( class MaybeDocument
   , Document
   , toMaybeDocument
   )
   as Exports
 
 createHTMLInputElement ::
-  ∀ a r.
-  IsDocument a =>
+  ∀ r.
   Optional ElementCreationOptions r =>
   Record r ->
-  a ->
+  Document ->
   Effect HTMLInputElement
 createHTMLInputElement = map unsafeCoerce <.. createElement "input"
 
@@ -52,19 +50,19 @@ partial interface Document {
 -- [CEReactions] attribute HTMLElement? body;
 foreign import bodyImpl :: ∀ a. a -> Effect (Nullable HTMLElement)
 
-body :: ∀ a. IsDocument a => a -> Effect (Maybe HTMLElement)
+body :: Document -> Effect (Maybe HTMLElement)
 body = map Nullable.toMaybe <. bodyImpl
 
-unsafeBody :: ∀ a. IsDocument a => a -> Effect HTMLElement
+unsafeBody :: Document -> Effect HTMLElement
 unsafeBody = map unsafeCoerce <. bodyImpl
 
 -- readonly attribute HTMLHeadElement? head;
 foreign import headImpl :: ∀ a. a -> Effect (Nullable HTMLElement)
 
-head :: ∀ a. IsDocument a => a -> Effect (Maybe HTMLElement)
+head :: Document -> Effect (Maybe HTMLElement)
 head = map Nullable.toMaybe <. headImpl
 
-unsafeHead :: ∀ a. IsDocument a => a -> Effect HTMLElement
+unsafeHead :: Document -> Effect HTMLElement
 unsafeHead = map unsafeCoerce <. headImpl
 
 {-
