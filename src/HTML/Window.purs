@@ -1,10 +1,11 @@
 module HTML.Window
   ( module Exports
   , document
+  , window
   ) where
 
 import MasonPrelude
-import HTML.Types (Document)
+import HTML.Types (Window, Document)
 import HTML.Types
   ( class IsWindow
   , class MaybeWindow
@@ -13,6 +14,8 @@ import HTML.Types
   )
   as Exports
 
+foreign import window :: Effect Window
+
 {-
 interface Window : EventTarget {
   // the current browsing context
@@ -20,7 +23,7 @@ interface Window : EventTarget {
   [Replaceable] readonly attribute WindowProxy self;
 -}
 --[LegacyUnforgeable] readonly attribute Document document;
-foreign import document :: Effect Document
+foreign import document :: Window -> Effect Document
 
 {-
   attribute DOMString name;

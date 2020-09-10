@@ -1,1 +1,3 @@
-exports.document = () => window.document
+exports.window = () => window;
+
+exports.document = window => () => window.document;
