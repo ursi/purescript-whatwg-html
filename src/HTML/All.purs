@@ -4,6 +4,7 @@ module HTML.All (module Exports) where
 import DOM.CharacterData as Exports
 import DOM.CustomEvent as Exports
 import DOM.Document as Exports
+import DOM.DOMTokenList as Exports
 import DOM.Element as Exports
 import DOM.Event hiding (new) as Exports
 import DOM.EventTarget as Exports

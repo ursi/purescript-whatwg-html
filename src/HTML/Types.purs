@@ -1,6 +1,7 @@
 -- classes that are defined but not exported are used only to have the compiler enforce proper instances being defined
 module HTML.Types
-  ( Event
+  ( DOMTokenList
+  , Event
   , class IsEvent
   , toEvent
   , CustomEvent
@@ -61,6 +62,8 @@ module HTML.Types
 
 import MasonPrelude
 import Util (unsafeConvert)
+
+data DOMTokenList
 
 data Event
 
