@@ -1,11 +1,13 @@
 module DOM.Element
-  ( module HTML.Types
+  ( module Exports
+  , classList
   , setAttribute
   , tagName
   , removeAttribute
   ) where
 
 import MasonPrelude
+import HTML.Types (class IsElement, DOMTokenList)
 import HTML.Types
   ( class IsElement
   , class MaybeElement
@@ -13,6 +15,7 @@ import HTML.Types
   , toElement
   , toMaybeElement
   )
+  as Exports
 
 {-
 interface Element : Node {
@@ -27,7 +30,11 @@ foreign import tagName :: ∀ a. IsElement a => a -> Effect String
 
   [CEReactions] attribute DOMString id;
   [CEReactions] attribute DOMString className;
-  [SameObject, PutForwards=value] readonly attribute DOMTokenList classList;
+-}
+-- [SameObject, PutForwards=value] readonly attribute DOMTokenList classList;
+foreign import classList :: ∀ a. IsElement a => a -> Effect DOMTokenList
+
+{-
   [CEReactions, Unscopable] attribute DOMString slot;
 
   boolean hasAttributes();
