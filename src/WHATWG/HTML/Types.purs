@@ -1,4 +1,5 @@
--- classes that are defined but not exported are used only to have the compiler enforce proper instances being defined
+-- for each data type T, an instance of IsT and MaybeT must be defined for T so that all required instances can be enforced by the compiler
+-- however, certain type classes do not need to be exported because they serve no other purpose, e.g., MaybeEvent and IsMouseEvent
 module WHATWG.HTML.Types
   ( DOMTokenList
   , Event
