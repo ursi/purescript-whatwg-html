@@ -21,6 +21,7 @@ type AddEventListenerOptions
     | EventListenerOptions
     )
 
+-- | `EffectFn1` is used because to use `removeEventListener`, the functions need to be referentially equal.
 -- undefined addEventListener(DOMString type, EventListener? callback, optional (AddEventListenerOptions or boolean) options = {});
 foreign import addEventListener ::
   ∀ a b r.
