@@ -10,9 +10,9 @@ module WHATWG.HTML.Document
 import MasonPrelude
 import Data.Nullable (Nullable)
 import Data.Nullable as Nullable
+import FFIOptions (class FFIOptions)
 import WHATWG.DOM.Document (ElementCreationOptions, createElement)
 import WHATWG.HTML.Types (Document, HTMLElement, HTMLInputElement)
-import WHATWG.Optional (class Optional)
 import WHATWG.HTML.Types
   ( class MaybeDocument
   , Document
@@ -22,7 +22,7 @@ import WHATWG.HTML.Types
 
 createHTMLInputElement ::
   ∀ r.
-  Optional ElementCreationOptions r =>
+  FFIOptions () ElementCreationOptions r =>
   Record r ->
   Document ->
   Effect HTMLInputElement

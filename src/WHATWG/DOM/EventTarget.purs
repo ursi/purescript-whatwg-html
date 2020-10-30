@@ -8,8 +8,8 @@ module WHATWG.DOM.EventTarget
   ) where
 
 import MasonPrelude
+import FFIOptions (class FFIOptions)
 import WHATWG.HTML.Types (class IsEvent, class IsEventTarget, Event)
-import WHATWG.Optional (class Optional)
 import WHATWG.HTML.Types (class IsEventTarget, EventTarget, toEventTarget) as Exports
 
 type EventListenerOptions
@@ -26,7 +26,7 @@ type AddEventListenerOptions
 foreign import addEventListener ::
   ∀ a b r.
   IsEventTarget a =>
-  Optional AddEventListenerOptions r =>
+  FFIOptions () AddEventListenerOptions r =>
   String ->
   (EffectFn1 Event b) ->
   Record r ->
@@ -37,7 +37,7 @@ foreign import addEventListener ::
 foreign import removeEventListener ::
   ∀ a b r.
   IsEventTarget a =>
-  Optional EventListenerOptions r =>
+  FFIOptions () EventListenerOptions r =>
   String ->
   (EffectFn1 Event b) ->
   Record r ->

@@ -5,8 +5,8 @@ module WHATWG.DOM.Document
   ) where
 
 import MasonPrelude
+import FFIOptions (class FFIOptions)
 import WHATWG.HTML.Types (Document, Element, Text)
-import WHATWG.Optional (class Optional)
 
 type ElementCreationOptions
   = ( is :: String )
@@ -34,7 +34,7 @@ interface Document : Node {
 -- [CEReactions, NewObject] Element createElement(DOMString localName, optional (DOMString or ElementCreationOptions) options = {});
 foreign import createElementImpl :: ∀ a r. String -> r -> a -> Effect Element
 
-createElement :: ∀ r. Optional ElementCreationOptions r => String -> Record r -> Document -> Effect Element
+createElement :: ∀ r. FFIOptions () ElementCreationOptions r => String -> Record r -> Document -> Effect Element
 createElement = createElementImpl
 
 {-

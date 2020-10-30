@@ -9,9 +9,9 @@ module WHATWG.DOM.Event
 import MasonPrelude
 import Data.Nullable (Nullable)
 import Data.Nullable as Nullable
+import FFIOptions (class FFIOptions)
 import WHATWG.HTML.Types (class IsEvent, Event, EventTarget)
 import WHATWG.HTML.Types (class IsEvent, Event, toEvent) as Exports
-import WHATWG.Optional (class Optional)
 
 type EventInit
   = ( bubbles :: Boolean
@@ -20,7 +20,7 @@ type EventInit
     )
 
 -- constructor(DOMString type, optional EventInit eventInitDict = {});
-foreign import new :: ∀ r. Optional EventInit r => String -> Record r -> Effect Event
+foreign import new :: ∀ r. FFIOptions () EventInit r => String -> Record r -> Effect Event
 
 {-
 interface Event {
