@@ -1,4 +1,4 @@
-module WHATWG.Util (unsafeConvert) where
+module WHATWG.Internal (unsafeConvert) where
 
 import MasonPrelude
 

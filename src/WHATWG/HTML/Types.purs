@@ -62,7 +62,7 @@ module WHATWG.HTML.Types
   ) where
 
 import MasonPrelude
-import WHATWG.Util (unsafeConvert)
+import WHATWG.Internal (unsafeConvert)
 
 data DOMTokenList
 
