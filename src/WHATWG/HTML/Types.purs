@@ -158,6 +158,8 @@ instance maybeHTMLElementEventTarget :: MaybeHTMLElement EventTarget
 
 instance maybeHTMLInputElementEventTarget :: MaybeHTMLInputElement EventTarget
 
+instance maybeHTMLTextareaElementEventTarget :: MaybeHTMLTextareaElement EventTarget
+
 instance maybeNodeEventTarget :: MaybeNode EventTarget
 
 instance maybeTextEventTarget :: MaybeText EventTarget
@@ -190,6 +192,8 @@ instance maybeElementNode :: MaybeElement Node
 instance maybeHTMLElementNode :: MaybeHTMLElement Node
 
 instance maybeHTMLInputElementNode :: MaybeHTMLInputElement Node
+
+instance maybeHTMLTextareaElementNode :: MaybeHTMLTextareaElement Node
 
 instance maybeTextNode :: MaybeText Node
 
@@ -265,6 +269,8 @@ instance maybeHTMLElementElement :: MaybeHTMLElement Element
 
 instance maybeHTMLInputElementElement :: MaybeHTMLInputElement Element
 
+instance maybeHTMLTextareaElementElement :: MaybeHTMLTextareaElement Element
+
 toElement :: ∀ a. IsElement a => a -> Element
 toElement = unsafeCoerce
 
@@ -302,11 +308,16 @@ instance parentNodeHTMLElement :: ParentNode HTMLElement
 
 instance slottableHTMLElement :: Slottable HTMLElement
 
-class MaybeHTMLInputElement a <= MaybeHTMLElement a
+class
+  ( MaybeHTMLInputElement a
+  , MaybeHTMLTextareaElement a
+  ) <= MaybeHTMLElement a
 
 instance maybeHTMLElementHTMLElement :: MaybeHTMLElement HTMLElement
 
 instance maybeHTMLInputElementHTMLElement :: MaybeHTMLInputElement HTMLElement
+
+instance maybeHTMLTextareaElementHTMLElement :: MaybeHTMLTextareaElement HTMLElement
 
 toHTMLElement :: ∀ a. IsHTMLElement a => a -> HTMLElement
 toHTMLElement = unsafeCoerce
