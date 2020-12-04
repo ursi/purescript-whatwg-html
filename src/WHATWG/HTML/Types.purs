@@ -41,9 +41,9 @@ module WHATWG.HTML.Types
   , class MaybeHTMLInputElement
   , HTMLInputElement
   , toMaybeHTMLInputElement
-  , class MaybeHTMLTextareaElement
-  , HTMLTextareaElement
-  , toMaybeHTMLTextareaElement
+  , class MaybeHTMLTextAreaElement
+  , HTMLTextAreaElement
+  , toMaybeHTMLTextAreaElement
   , class IsCharacterData
   , Text
   , class IsText
@@ -158,7 +158,7 @@ instance maybeHTMLElementEventTarget :: MaybeHTMLElement EventTarget
 
 instance maybeHTMLInputElementEventTarget :: MaybeHTMLInputElement EventTarget
 
-instance maybeHTMLTextareaElementEventTarget :: MaybeHTMLTextareaElement EventTarget
+instance maybeHTMLTextAreaElementEventTarget :: MaybeHTMLTextAreaElement EventTarget
 
 instance maybeNodeEventTarget :: MaybeNode EventTarget
 
@@ -193,7 +193,7 @@ instance maybeHTMLElementNode :: MaybeHTMLElement Node
 
 instance maybeHTMLInputElementNode :: MaybeHTMLInputElement Node
 
-instance maybeHTMLTextareaElementNode :: MaybeHTMLTextareaElement Node
+instance maybeHTMLTextAreaElementNode :: MaybeHTMLTextAreaElement Node
 
 instance maybeTextNode :: MaybeText Node
 
@@ -269,7 +269,7 @@ instance maybeHTMLElementElement :: MaybeHTMLElement Element
 
 instance maybeHTMLInputElementElement :: MaybeHTMLInputElement Element
 
-instance maybeHTMLTextareaElementElement :: MaybeHTMLTextareaElement Element
+instance maybeHTMLTextAreaElementElement :: MaybeHTMLTextAreaElement Element
 
 toElement :: ∀ a. IsElement a => a -> Element
 toElement = unsafeCoerce
@@ -310,14 +310,14 @@ instance slottableHTMLElement :: Slottable HTMLElement
 
 class
   ( MaybeHTMLInputElement a
-  , MaybeHTMLTextareaElement a
+  , MaybeHTMLTextAreaElement a
   ) <= MaybeHTMLElement a
 
 instance maybeHTMLElementHTMLElement :: MaybeHTMLElement HTMLElement
 
 instance maybeHTMLInputElementHTMLElement :: MaybeHTMLInputElement HTMLElement
 
-instance maybeHTMLTextareaElementHTMLElement :: MaybeHTMLTextareaElement HTMLElement
+instance maybeHTMLTextAreaElementHTMLElement :: MaybeHTMLTextAreaElement HTMLElement
 
 toHTMLElement :: ∀ a. IsHTMLElement a => a -> HTMLElement
 toHTMLElement = unsafeCoerce
@@ -360,40 +360,40 @@ instance maybeHTMLInputElementHTMLInputElement :: MaybeHTMLInputElement HTMLInpu
 toMaybeHTMLInputElement :: ∀ a. MaybeHTMLInputElement a => a -> Maybe HTMLInputElement
 toMaybeHTMLInputElement = unsafeConvert "HTMLInputElement"
 
-data HTMLTextareaElement
+data HTMLTextAreaElement
 
-class IsHTMLElement a <= IsHTMLTextareaElement a
+class IsHTMLElement a <= IsHTMLTextAreaElement a
 
-instance isEventTargetHTMLTextareaElement :: IsEventTarget HTMLTextareaElement
+instance isEventTargetHTMLTextAreaElement :: IsEventTarget HTMLTextAreaElement
 
-instance isNodeHTMLTextareaElement :: IsNode HTMLTextareaElement
+instance isNodeHTMLTextAreaElement :: IsNode HTMLTextAreaElement
 
-instance isElementHTMLTextareaElement :: IsElement HTMLTextareaElement
+instance isElementHTMLTextAreaElement :: IsElement HTMLTextAreaElement
 
-instance hTMLElementHTMLTextareaElement :: IsHTMLElement HTMLTextareaElement
+instance hTMLElementHTMLTextAreaElement :: IsHTMLElement HTMLTextAreaElement
 
-instance isHTMLTextareaElementHTMLTextareaElement :: IsHTMLTextareaElement HTMLTextareaElement
+instance isHTMLTextAreaElementHTMLTextAreaElement :: IsHTMLTextAreaElement HTMLTextAreaElement
 
-instance childNodeHTMLTextareaElement :: ChildNode HTMLTextareaElement
+instance childNodeHTMLTextAreaElement :: ChildNode HTMLTextAreaElement
 
-instance elementContentEditableHTMLTextareaElement :: ElementContentEditable HTMLTextareaElement
+instance elementContentEditableHTMLTextAreaElement :: ElementContentEditable HTMLTextAreaElement
 
-instance globalEventHandlersHTMLTextareaElement :: GlobalEventHandlers HTMLTextareaElement
+instance globalEventHandlersHTMLTextAreaElement :: GlobalEventHandlers HTMLTextAreaElement
 
-instance hTMLOrSVGElementHTMLTextareaElement :: HTMLOrSVGElement HTMLTextareaElement
+instance hTMLOrSVGElementHTMLTextAreaElement :: HTMLOrSVGElement HTMLTextAreaElement
 
-instance nonDocumentTypeChildNodeHTMLTextareaElement :: NonDocumentTypeChildNode HTMLTextareaElement
+instance nonDocumentTypeChildNodeHTMLTextAreaElement :: NonDocumentTypeChildNode HTMLTextAreaElement
 
-instance parentNodeHTMLTextareaElement :: ParentNode HTMLTextareaElement
+instance parentNodeHTMLTextAreaElement :: ParentNode HTMLTextAreaElement
 
-instance slottableHTMLTextareaElement :: Slottable HTMLTextareaElement
+instance slottableHTMLTextAreaElement :: Slottable HTMLTextAreaElement
 
-class MaybeHTMLTextareaElement a
+class MaybeHTMLTextAreaElement a
 
-instance maybeHTMLTextareaElementHTMLTextareaElement :: MaybeHTMLTextareaElement HTMLTextareaElement
+instance maybeHTMLTextAreaElementHTMLTextAreaElement :: MaybeHTMLTextAreaElement HTMLTextAreaElement
 
-toMaybeHTMLTextareaElement :: ∀ a. MaybeHTMLTextareaElement a => a -> Maybe HTMLTextareaElement
-toMaybeHTMLTextareaElement = unsafeConvert "HTMLTextareaElement"
+toMaybeHTMLTextAreaElement :: ∀ a. MaybeHTMLTextAreaElement a => a -> Maybe HTMLTextAreaElement
+toMaybeHTMLTextAreaElement = unsafeConvert "HTMLTextAreaElement"
 
 class
   ( IsNode a

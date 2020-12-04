@@ -20,7 +20,7 @@ import WHATWG.DOM.Mixin.XPathEvaluatorBase as Exports
 import WHATWG.HTML.Document as Exports
 import WHATWG.HTML.HTMLElement as Exports
 import WHATWG.HTML.HTMLInputElement hiding (value, setValue) as Exports
-import WHATWG.HTML.HTMLTextareaElement hiding (value, setValue) as Exports
+import WHATWG.HTML.HTMLTextAreaElement hiding (value, setValue) as Exports
 import WHATWG.HTML.UIEvent as Exports
 import WHATWG.HTML.MouseEvent as Exports
 import WHATWG.HTML.Window as Exports

@@ -1,4 +1,4 @@
-module WHATWG.HTML.HTMLTextareaElement
+module WHATWG.HTML.HTMLTextAreaElement
   ( module WHATWG.HTML.Types
   , value
   , setValue
@@ -6,9 +6,9 @@ module WHATWG.HTML.HTMLTextareaElement
 
 import MasonPrelude
 import WHATWG.HTML.Types
-  ( class MaybeHTMLTextareaElement
-  , HTMLTextareaElement
-  , toMaybeHTMLTextareaElement
+  ( class MaybeHTMLTextAreaElement
+  , HTMLTextAreaElement
+  , toMaybeHTMLTextAreaElement
   )
 import WHATWG.Internal as I
 
@@ -34,10 +34,10 @@ interface HTMLTextAreaElement : HTMLElement {
   [CEReactions] attribute DOMString defaultValue;
 -}
 -- attribute [LegacyNullToEmptyString] DOMString value;
-value :: HTMLTextareaElement -> Effect String
+value :: HTMLTextAreaElement -> Effect String
 value = I.unsafeGet "value"
 
-setValue :: String -> HTMLTextareaElement -> Effect Unit
+setValue :: String -> HTMLTextAreaElement -> Effect Unit
 setValue = I.unsafeSet "value"
 
 {-
