@@ -12,6 +12,7 @@ import Data.Nullable as Nullable
 import FFIOptions (class FFIOptions)
 import WHATWG.HTML.Types (class IsEvent, Event, EventTarget)
 import WHATWG.HTML.Types (class IsEvent, Event, toEvent) as Exports
+import WHATWG.Internal as I
 
 type EventInit
   = ( bubbles :: Boolean
@@ -28,13 +29,14 @@ interface Event {
   readonly attribute DOMString type;
 -}
 -- readonly attribute EventTarget? target;
-foreign import targetImpl :: ∀ a. a -> Effect (Nullable EventTarget)
+targetNullable :: ∀ a. IsEvent a => a -> Nullable EventTarget
+targetNullable = I.unsafeGetPure "target"
 
-target :: ∀ a. IsEvent a => a -> Effect (Maybe EventTarget)
-target = map Nullable.toMaybe <. targetImpl
+target :: ∀ a. IsEvent a => a -> Maybe EventTarget
+target = Nullable.toMaybe <. targetNullable
 
-unsafeTarget :: ∀ a. IsEvent a => a -> Effect EventTarget
-unsafeTarget = map unsafeCoerce <. targetImpl
+unsafeTarget :: ∀ a. IsEvent a => a -> EventTarget
+unsafeTarget = unsafeCoerce <. targetNullable
 
 {-
   readonly attribute EventTarget? srcElement; // historical
