@@ -13,6 +13,7 @@ import Data.Nullable as Nullable
 import FFIOptions (class FFIOptions)
 import WHATWG.DOM.Document (ElementCreationOptions, createElement)
 import WHATWG.HTML.Types (Document, HTMLElement, HTMLInputElement)
+import WHATWG.Internal as I
 import WHATWG.HTML.Types
   ( class MaybeDocument
   , Document
@@ -48,22 +49,24 @@ partial interface Document {
   [CEReactions] attribute DOMString dir;
 -}
 -- [CEReactions] attribute HTMLElement? body;
-foreign import bodyImpl :: ∀ a. a -> Effect (Nullable HTMLElement)
+bodyNullable :: Document -> Effect (Nullable HTMLElement)
+bodyNullable = I.unsafeGet "body"
 
 body :: Document -> Effect (Maybe HTMLElement)
-body = map Nullable.toMaybe <. bodyImpl
+body = map Nullable.toMaybe <. bodyNullable
 
 unsafeBody :: Document -> Effect HTMLElement
-unsafeBody = map unsafeCoerce <. bodyImpl
+unsafeBody = map unsafeCoerce <. bodyNullable
 
 -- readonly attribute HTMLHeadElement? head;
-foreign import headImpl :: ∀ a. a -> Effect (Nullable HTMLElement)
+headNullable :: Document -> Effect (Nullable HTMLElement)
+headNullable = I.unsafeGet "head"
 
 head :: Document -> Effect (Maybe HTMLElement)
-head = map Nullable.toMaybe <. headImpl
+head = map Nullable.toMaybe <. headNullable
 
 unsafeHead :: Document -> Effect HTMLElement
-unsafeHead = map unsafeCoerce <. headImpl
+unsafeHead = map unsafeCoerce <. headNullable
 
 {-
   [SameObject] readonly attribute HTMLCollection images;

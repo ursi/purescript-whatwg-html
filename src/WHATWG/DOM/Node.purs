@@ -18,6 +18,7 @@ import WHATWG.HTML.Types
   , toNode
   , toMaybeNode
   )
+import WHATWG.Internal as I
 
 {-
 interface Node : EventTarget {
@@ -43,7 +44,11 @@ interface Node : EventTarget {
   Node getRootNode(optional GetRootNodeOptions options = {});
 -}
 -- readonly attribute Node? parentNode;
-foreign import parentNode :: ∀ a. IsNode a => a -> Effect (Maybe Node)
+parentNodeNullable :: ∀ a. IsNode a => a -> Effect (Nullable Node)
+parentNodeNullable = I.unsafeGet "parentNode"
+
+parentNode :: ∀ a. IsNode a => a -> Effect (Maybe Node)
+parentNode = map Nullable.toMaybe <. parentNodeNullable
 
 {-
   readonly attribute Element? parentElement;
@@ -51,10 +56,11 @@ foreign import parentNode :: ∀ a. IsNode a => a -> Effect (Maybe Node)
   [SameObject] readonly attribute NodeList childNodes;
 -}
 -- readonly attribute Node? firstChild;
-foreign import firstChildImpl :: ∀ a. a -> Effect (Nullable Node) --cry
+firstChildNullable :: ∀ a. IsNode a => a -> Effect (Nullable Node)
+firstChildNullable = I.unsafeGet "firstChild"
 
 firstChild :: ∀ a. IsNode a => a -> Effect (Maybe Node)
-firstChild = map Nullable.toMaybe <. firstChildImpl
+firstChild = map Nullable.toMaybe <. firstChildNullable
 
 {-
   readonly attribute Node? lastChild;

@@ -12,22 +12,27 @@ import WHATWG.HTML.Types
   , MouseEvent
   , toMaybeMouseEvent
   )
+import WHATWG.Internal as I
 
 {-
 [Constructor(DOMString type, optional MouseEventInit eventInitDict), Exposed=Window]
 interface MouseEvent : UIEvent {
 -}
 -- readonly attribute long screenX;
-foreign import screenX :: MouseEvent -> Effect Number
+screenX :: MouseEvent -> Effect Number
+screenX = I.unsafeGet "screenX"
 
 -- readonly attribute long screenY;
-foreign import screenY :: MouseEvent -> Effect Number
+screenY :: MouseEvent -> Effect Number
+screenY = I.unsafeGet "screenY"
 
 -- readonly attribute long clientX;
-foreign import clientX :: MouseEvent -> Effect Number
+clientX :: MouseEvent -> Effect Number
+clientX = I.unsafeGet "clientX"
 
 -- readonly attribute long clientY;
-foreign import clientY :: MouseEvent -> Effect Number
+clientY :: MouseEvent -> Effect Number
+clientY = I.unsafeGet "clientY"
 
 {-
 

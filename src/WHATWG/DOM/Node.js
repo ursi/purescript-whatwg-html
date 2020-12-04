@@ -1,7 +1,3 @@
-exports.parentNode = () => node => () => node.parentNode;
-
-exports.firstChildImpl = node => () => node.firstChild;
-
 exports.insertBefore = () => () => () => node => child => parent => () => {
 	return parent.insertBefore(node, child);
 };

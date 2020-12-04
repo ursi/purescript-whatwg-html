@@ -6,6 +6,7 @@ module WHATWG.HTML.Window
 
 import MasonPrelude
 import WHATWG.HTML.Types (Window, Document)
+import WHATWG.Internal as I
 import WHATWG.HTML.Types
   ( class MaybeWindow
   , Window
@@ -22,7 +23,8 @@ interface Window : EventTarget {
   [Replaceable] readonly attribute WindowProxy self;
 -}
 --[LegacyUnforgeable] readonly attribute Document document;
-foreign import document :: Window -> Effect Document
+document :: Window -> Effect Document
+document = I.unsafeGet "document"
 
 {-
   attribute DOMString name;

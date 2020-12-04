@@ -36,7 +36,8 @@ tagName = I.unsafeGetPure "tagName"
   [CEReactions] attribute DOMString className;
 -}
 -- [SameObject, PutForwards=value] readonly attribute DOMTokenList classList;
-foreign import classList :: ∀ a. IsElement a => a -> Effect DOMTokenList
+classList :: ∀ a. IsElement a => a -> Effect DOMTokenList
+classList = I.unsafeGet "classList"
 
 {-
   [CEReactions, Unscopable] attribute DOMString slot;
@@ -112,7 +113,8 @@ partial interface Element {
   readonly attribute long scrollWidth;
 -}
 -- readonly attribute long scrollHeight;
-foreign import scrollHeight :: ∀ a. IsElement a => a -> Effect Int
+scrollHeight :: ∀ a. IsElement a => a -> Effect Int
+scrollHeight = I.unsafeGet "scrollHeight"
 
 {-
   readonly attribute long clientTop;
@@ -121,4 +123,5 @@ foreign import scrollHeight :: ∀ a. IsElement a => a -> Effect Int
 };
 -}
 -- readonly attribute long clientHeight;
-foreign import clientHeight :: ∀ a. IsElement a => a -> Effect Int
+clientHeight :: ∀ a. IsElement a => a -> Effect Int
+clientHeight = I.unsafeGet "clientHeight"

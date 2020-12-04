@@ -10,6 +10,7 @@ import WHATWG.HTML.Types
   , HTMLTextareaElement
   , toMaybeHTMLTextareaElement
   )
+import WHATWG.Internal as I
 
 {-
 interface HTMLTextAreaElement : HTMLElement {
@@ -33,9 +34,11 @@ interface HTMLTextAreaElement : HTMLElement {
   [CEReactions] attribute DOMString defaultValue;
 -}
 -- attribute [LegacyNullToEmptyString] DOMString value;
-foreign import value :: HTMLTextareaElement -> Effect String
+value :: HTMLTextareaElement -> Effect String
+value = I.unsafeGet "value"
 
-foreign import setValue :: String -> HTMLTextareaElement -> Effect Unit
+setValue :: String -> HTMLTextareaElement -> Effect Unit
+setValue = I.unsafeSet "value"
 
 {-
   readonly attribute unsigned long textLength;

@@ -10,6 +10,7 @@ import WHATWG.HTML.Types
   , HTMLInputElement
   , toMaybeHTMLInputElement
   )
+import WHATWG.Internal as I
 
 {-
 interface HTMLInputElement : HTMLElement {
@@ -49,9 +50,11 @@ interface HTMLInputElement : HTMLElement {
   [CEReactions] attribute DOMString defaultValue;
 -}
 -- [CEReactions] attribute [LegacyNullToEmptyString] DOMString value;
-foreign import value :: HTMLInputElement -> Effect String
+value :: HTMLInputElement -> Effect String
+value = I.unsafeGet "value"
 
-foreign import setValue :: String -> HTMLInputElement -> Effect Unit
+setValue :: String -> HTMLInputElement -> Effect Unit
+setValue = I.unsafeSet "value"
 
 {-
   attribute object? valueAsDate;
