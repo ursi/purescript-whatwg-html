@@ -2,10 +2,10 @@ module WHATWG.DOM.Element
   ( module Exports
   , classList
   , clientHeight
+  , removeAttribute
   , scrollHeight
   , setAttribute
   , tagName
-  , removeAttribute
   ) where
 
 import MasonPrelude
