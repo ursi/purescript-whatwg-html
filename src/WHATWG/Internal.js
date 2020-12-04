@@ -5,3 +5,9 @@ exports.instanceof = value => name => {
 		return false;
 	}
 };
+
+exports.unsafeGet = key => a => () => a[key];
+
+exports.unsafeGetPure = key => a => a[key];
+
+exports.unsafeSet = key => value => a => () => a[key] = value;

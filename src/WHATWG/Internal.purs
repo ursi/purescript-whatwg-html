@@ -1,4 +1,9 @@
-module WHATWG.Internal (unsafeConvert) where
+module WHATWG.Internal
+  ( unsafeConvert
+  , unsafeGet
+  , unsafeGetPure
+  , unsafeSet
+  ) where
 
 import MasonPrelude
 
@@ -10,3 +15,9 @@ unsafeConvert constructor value =
     Just $ unsafeCoerce value
   else
     Nothing
+
+foreign import unsafeGet :: ∀ a b. String -> a -> Effect b
+
+foreign import unsafeGetPure :: ∀ a b. String -> a -> b
+
+foreign import unsafeSet :: ∀ value object. String -> value -> object -> Effect Unit
