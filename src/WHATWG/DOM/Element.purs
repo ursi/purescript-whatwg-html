@@ -9,6 +9,7 @@ module WHATWG.DOM.Element
   ) where
 
 import MasonPrelude
+import WHATWG.Internal as I
 import WHATWG.HTML.Types (class IsElement, DOMTokenList)
 import WHATWG.HTML.Types
   ( class IsElement
@@ -26,7 +27,8 @@ interface Element : Node {
   readonly attribute DOMString localName;
 -}
 -- readonly attribute DOMString tagName;
-foreign import tagName :: ∀ a. IsElement a => a -> Effect String
+tagName :: ∀ a. IsElement a => a -> String
+tagName = I.unsafeGetPure "tagName"
 
 {-
 
