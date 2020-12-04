@@ -41,6 +41,9 @@ module WHATWG.HTML.Types
   , class MaybeHTMLInputElement
   , HTMLInputElement
   , toMaybeHTMLInputElement
+  , class MaybeHTMLTextareaElement
+  , HTMLTextareaElement
+  , toMaybeHTMLTextareaElement
   , class IsCharacterData
   , Text
   , class IsText
@@ -345,6 +348,41 @@ instance maybeHTMLInputElementHTMLInputElement :: MaybeHTMLInputElement HTMLInpu
 
 toMaybeHTMLInputElement :: ∀ a. MaybeHTMLInputElement a => a -> Maybe HTMLInputElement
 toMaybeHTMLInputElement = unsafeConvert "HTMLInputElement"
+
+data HTMLTextareaElement
+
+class IsHTMLElement a <= IsHTMLTextareaElement a
+
+instance isEventTargetHTMLTextareaElement :: IsEventTarget HTMLTextareaElement
+
+instance isNodeHTMLTextareaElement :: IsNode HTMLTextareaElement
+
+instance isElementHTMLTextareaElement :: IsElement HTMLTextareaElement
+
+instance hTMLElementHTMLTextareaElement :: IsHTMLElement HTMLTextareaElement
+
+instance isHTMLTextareaElementHTMLTextareaElement :: IsHTMLTextareaElement HTMLTextareaElement
+
+instance childNodeHTMLTextareaElement :: ChildNode HTMLTextareaElement
+
+instance elementContentEditableHTMLTextareaElement :: ElementContentEditable HTMLTextareaElement
+
+instance globalEventHandlersHTMLTextareaElement :: GlobalEventHandlers HTMLTextareaElement
+
+instance hTMLOrSVGElementHTMLTextareaElement :: HTMLOrSVGElement HTMLTextareaElement
+
+instance nonDocumentTypeChildNodeHTMLTextareaElement :: NonDocumentTypeChildNode HTMLTextareaElement
+
+instance parentNodeHTMLTextareaElement :: ParentNode HTMLTextareaElement
+
+instance slottableHTMLTextareaElement :: Slottable HTMLTextareaElement
+
+class MaybeHTMLTextareaElement a
+
+instance maybeHTMLTextareaElementHTMLTextareaElement :: MaybeHTMLTextareaElement HTMLTextareaElement
+
+toMaybeHTMLTextareaElement :: ∀ a. MaybeHTMLTextareaElement a => a -> Maybe HTMLTextareaElement
+toMaybeHTMLTextareaElement = unsafeConvert "HTMLTextareaElement"
 
 class
   ( IsNode a
