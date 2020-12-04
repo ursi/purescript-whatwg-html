@@ -7,3 +7,7 @@ exports.setAttribute = () => qualifiedName => value => element => () => {
 };
 
 exports.removeAttribute = () => qualifiedName => element => () => element.removeAttribute(qualifiedName);
+
+exports.scrollHeight = () => element => () => element.scrollHeight;
+
+exports.clientHeight = () => element => () => element.clientHeight;

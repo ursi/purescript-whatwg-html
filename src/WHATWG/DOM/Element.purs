@@ -1,6 +1,8 @@
 module WHATWG.DOM.Element
   ( module Exports
   , classList
+  , clientHeight
+  , scrollHeight
   , setAttribute
   , tagName
   , removeAttribute
@@ -84,3 +86,37 @@ dictionary ShadowRootInit {
   boolean delegatesFocus = false;
 };
 -}
+-- https://www.w3.org/TR/cssom-view/#extension-to-the-element-interface
+{-
+enum ScrollLogicalPosition { "start", "center", "end", "nearest" };
+dictionary ScrollIntoViewOptions : ScrollOptions {
+  ScrollLogicalPosition block = "center";
+  ScrollLogicalPosition inline = "center";
+};
+
+partial interface Element {
+  sequence<DOMRect> getClientRects();
+  [NewObject] DOMRect getBoundingClientRect();
+  void scrollIntoView();
+  void scrollIntoView((boolean or object) arg);
+  void scroll(optional ScrollToOptions options);
+  void scroll(unrestricted double x, unrestricted double y);
+  void scrollTo(optional ScrollToOptions options);
+  void scrollTo(unrestricted double x, unrestricted double y);
+  void scrollBy(optional ScrollToOptions options);
+  void scrollBy(unrestricted double x, unrestricted double y);
+  attribute unrestricted double scrollTop;
+  attribute unrestricted double scrollLeft;
+  readonly attribute long scrollWidth;
+-}
+-- readonly attribute long scrollHeight;
+foreign import scrollHeight :: ∀ a. IsElement a => a -> Effect Int
+
+{-
+  readonly attribute long clientTop;
+  readonly attribute long clientLeft;
+  readonly attribute long clientWidth;
+};
+-}
+-- readonly attribute long clientHeight;
+foreign import clientHeight :: ∀ a. IsElement a => a -> Effect Int
