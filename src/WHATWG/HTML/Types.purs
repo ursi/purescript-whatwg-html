@@ -14,6 +14,9 @@ module WHATWG.HTML.Types
   , class MaybeUIEvent
   , toUIEvent
   , toMaybeUIEvent
+  , KeyboardEvent
+  , class MaybeKeyboardEvent
+  , toMaybeKeyboardEvent
   , MouseEvent
   , class MaybeMouseEvent
   , toMaybeMouseEvent
@@ -122,6 +125,23 @@ toUIEvent = unsafeCoerce
 
 toMaybeUIEvent :: ∀ a. MaybeUIEvent a => a -> Maybe UIEvent
 toMaybeUIEvent = unsafeConvert "UIEvent"
+
+data KeyboardEvent
+
+class IsUIEvent a <= IsKeyboardEvent a
+
+instance isEventKeyboardEvent :: IsEvent KeyboardEvent
+
+instance isUIEventKeyboardEvent :: IsUIEvent KeyboardEvent
+
+instance isKeyboardEventKeyboardEvent :: IsKeyboardEvent KeyboardEvent
+
+class MaybeKeyboardEvent a
+
+instance maybeKeyboardEventKeyboardEvent :: MaybeKeyboardEvent KeyboardEvent
+
+toMaybeKeyboardEvent :: ∀ a. MaybeKeyboardEvent a => a -> Maybe KeyboardEvent
+toMaybeKeyboardEvent = unsafeConvert "KeyboardEvent"
 
 data MouseEvent
 
