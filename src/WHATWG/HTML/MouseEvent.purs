@@ -6,7 +6,6 @@ module WHATWG.HTML.MouseEvent
   , screenY
   ) where
 
-import MasonPrelude
 import WHATWG.HTML.Types
   ( class MaybeMouseEvent
   , MouseEvent
