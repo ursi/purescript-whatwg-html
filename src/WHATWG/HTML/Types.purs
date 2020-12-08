@@ -86,6 +86,8 @@ instance maybeCustomEventEvent :: MaybeCustomEvent Event
 
 instance maybeUIEventEvent :: MaybeUIEvent Event
 
+instance maybeKeyboardEventEvent :: MaybeKeyboardEvent Event
+
 instance maybeMouseEventEvent :: MaybeMouseEvent Event
 
 toEvent :: ∀ a. IsEvent a => a -> Event
@@ -114,9 +116,11 @@ instance isEventUIEvent :: IsEvent UIEvent
 
 instance isUIEventUIEvent :: IsUIEvent UIEvent
 
-class MaybeMouseEvent a <= MaybeUIEvent a
+class (MaybeKeyboardEvent a, MaybeMouseEvent a) <= MaybeUIEvent a
 
 instance maybeUIEventUIEvent :: MaybeUIEvent UIEvent
+
+instance maybeKeyboardEventUIEvent :: MaybeKeyboardEvent UIEvent
 
 instance maybeMouseEventUIEvent :: MaybeMouseEvent UIEvent
 
