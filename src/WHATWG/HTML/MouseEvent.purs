@@ -18,20 +18,20 @@ import WHATWG.Internal as I
 interface MouseEvent : UIEvent {
 -}
 -- readonly attribute long screenX;
-screenX :: MouseEvent -> Effect Number
-screenX = I.unsafeGet "screenX"
+screenX :: MouseEvent -> Int
+screenX = I.unsafeGetPure "screenX"
 
 -- readonly attribute long screenY;
-screenY :: MouseEvent -> Effect Number
-screenY = I.unsafeGet "screenY"
+screenY :: MouseEvent -> Int
+screenY = I.unsafeGetPure "screenY"
 
 -- readonly attribute long clientX;
-clientX :: MouseEvent -> Effect Number
-clientX = I.unsafeGet "clientX"
+clientX :: MouseEvent -> Int
+clientX = I.unsafeGetPure "clientX"
 
 -- readonly attribute long clientY;
-clientY :: MouseEvent -> Effect Number
-clientY = I.unsafeGet "clientY"
+clientY :: MouseEvent -> Int
+clientY = I.unsafeGetPure "clientY"
 
 {-
 
