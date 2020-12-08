@@ -2,6 +2,7 @@ module WHATWG.DOM.Event
   ( module Exports
   , EventInit
   , new
+  , preventDefault
   , target
   , unsafeTarget
   ) where
@@ -56,7 +57,11 @@ unsafeTarget = unsafeCoerce <. targetNullable
   readonly attribute boolean bubbles;
   readonly attribute boolean cancelable;
            attribute boolean returnValue;  // historical
-  undefined preventDefault();
+  -}
+-- undefined preventDefault();
+foreign import preventDefault :: ∀ a. IsEvent a => a -> Effect Unit
+
+{-
   readonly attribute boolean defaultPrevented;
   readonly attribute boolean composed;
 
