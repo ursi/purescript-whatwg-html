@@ -24,7 +24,7 @@ import WHATWG.HTML.Types
 createHTMLInputElement ::
   ∀ r.
   FFIOptions () ElementCreationOptions r =>
-  Record r ->
+  r ->
   Document ->
   Effect HTMLInputElement
 createHTMLInputElement = map unsafeCoerce <.. createElement "input"

@@ -29,7 +29,7 @@ foreign import addEventListener ::
   FFIOptions () AddEventListenerOptions r =>
   String ->
   (EffectFn1 Event b) ->
-  Record r ->
+  r ->
   a ->
   Effect Unit
 
@@ -40,7 +40,7 @@ foreign import removeEventListener ::
   FFIOptions () EventListenerOptions r =>
   String ->
   (EffectFn1 Event b) ->
-  Record r ->
+  r ->
   a ->
   Effect Unit
 

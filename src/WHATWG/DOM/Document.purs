@@ -34,7 +34,7 @@ interface Document : Node {
 -- [CEReactions, NewObject] Element createElement(DOMString localName, optional (DOMString or ElementCreationOptions) options = {});
 foreign import createElementImpl :: ∀ a r. String -> r -> a -> Effect Element
 
-createElement :: ∀ r. FFIOptions () ElementCreationOptions r => String -> Record r -> Document -> Effect Element
+createElement :: ∀ r. FFIOptions () ElementCreationOptions r => String -> r -> Document -> Effect Element
 createElement = createElementImpl
 
 {-

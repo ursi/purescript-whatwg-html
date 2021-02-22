@@ -22,7 +22,7 @@ type EventInit
     )
 
 -- constructor(DOMString type, optional EventInit eventInitDict = {});
-foreign import new :: ∀ r. FFIOptions () EventInit r => String -> Record r -> Effect Event
+foreign import new :: ∀ r. FFIOptions () EventInit r => String -> r -> Effect Event
 
 {-
 interface Event {
