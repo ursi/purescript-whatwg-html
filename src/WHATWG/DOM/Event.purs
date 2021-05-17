@@ -5,6 +5,8 @@ module WHATWG.DOM.Event
   , preventDefault
   , target
   , unsafeTarget
+  , currentTarget
+  , unsafeCurrentTarget
   ) where
 
 import MasonPrelude
@@ -41,7 +43,18 @@ unsafeTarget = unsafeCoerce <. targetNullable
 
 {-
   readonly attribute EventTarget? srcElement; // historical
-  readonly attribute EventTarget? currentTarget;
+-}
+
+currentTargetNullable :: ∀ a. IsEvent a => a -> Nullable EventTarget
+currentTargetNullable = I.unsafeGetPure "currentTarget"
+
+currentTarget :: ∀ a. IsEvent a => a -> Maybe EventTarget
+currentTarget = Nullable.toMaybe <. currentTargetNullable
+
+unsafeCurrentTarget :: ∀ a. IsEvent a => a -> EventTarget
+unsafeCurrentTarget = unsafeCoerce <. currentTargetNullable
+
+{-
   sequence<EventTarget> composedPath();
 
   const unsigned short NONE = 0;
