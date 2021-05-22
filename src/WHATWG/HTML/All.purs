@@ -23,6 +23,7 @@ import WHATWG.HTML.HTMLInputElement hiding (value, setValue) as Exports
 import WHATWG.HTML.HTMLTextAreaElement hiding (value, setValue) as Exports
 import WHATWG.HTML.UIEvent as Exports
 import WHATWG.HTML.KeyboardEvent as Exports
+import WHATWG.HTML.InputEvent as Exports
 import WHATWG.HTML.MouseEvent as Exports
 import WHATWG.HTML.Window as Exports
 import WHATWG.HTML.Mixin.DocumentOrShadowRoot as Exports
