@@ -2,6 +2,7 @@ module WHATWG.DOM.Event
   ( module Exports
   , EventInit
   , new
+  , stopPropagation
   , preventDefault
   , target
   , unsafeTarget
@@ -62,8 +63,12 @@ unsafeCurrentTarget = unsafeCoerce <. currentTargetNullable
   const unsigned short AT_TARGET = 2;
   const unsigned short BUBBLING_PHASE = 3;
   readonly attribute unsigned short eventPhase;
+-}
 
-  undefined stopPropagation();
+-- undefined stopPropagation();
+foreign import stopPropagation :: ∀ a. IsEvent a => a -> Effect Unit
+
+{-
            attribute boolean cancelBubble; // historical alias of .stopPropagation
   undefined stopImmediatePropagation();
 

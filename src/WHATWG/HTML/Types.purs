@@ -17,6 +17,9 @@ module WHATWG.HTML.Types
   , KeyboardEvent
   , class MaybeKeyboardEvent
   , toMaybeKeyboardEvent
+  , InputEvent
+  , class MaybeInputEvent
+  , toMaybeInputEvent
   , MouseEvent
   , class MaybeMouseEvent
   , toMaybeMouseEvent
@@ -88,6 +91,8 @@ instance maybeUIEventEvent :: MaybeUIEvent Event
 
 instance maybeKeyboardEventEvent :: MaybeKeyboardEvent Event
 
+instance maybeInputEventEvent :: MaybeInputEvent Event
+
 instance maybeMouseEventEvent :: MaybeMouseEvent Event
 
 toEvent :: ∀ a. IsEvent a => a -> Event
@@ -116,11 +121,13 @@ instance isEventUIEvent :: IsEvent UIEvent
 
 instance isUIEventUIEvent :: IsUIEvent UIEvent
 
-class (MaybeKeyboardEvent a, MaybeMouseEvent a) <= MaybeUIEvent a
+class (MaybeKeyboardEvent a, MaybeInputEvent a, MaybeMouseEvent a) <= MaybeUIEvent a
 
 instance maybeUIEventUIEvent :: MaybeUIEvent UIEvent
 
 instance maybeKeyboardEventUIEvent :: MaybeKeyboardEvent UIEvent
+
+instance maybeInputEventUIEvent :: MaybeInputEvent UIEvent
 
 instance maybeMouseEventUIEvent :: MaybeMouseEvent UIEvent
 
@@ -146,6 +153,23 @@ instance maybeKeyboardEventKeyboardEvent :: MaybeKeyboardEvent KeyboardEvent
 
 toMaybeKeyboardEvent :: ∀ a. MaybeKeyboardEvent a => a -> Maybe KeyboardEvent
 toMaybeKeyboardEvent = unsafeConvert "KeyboardEvent"
+
+data InputEvent
+
+class IsUIEvent a <= IsInputEvent a
+
+instance isEventInputEvent :: IsEvent InputEvent
+
+instance isUIEventInputEvent :: IsUIEvent InputEvent
+
+instance isInputEventInputEvent :: IsInputEvent InputEvent
+
+class MaybeInputEvent a
+
+instance maybeInputEventInputEvent :: MaybeInputEvent InputEvent
+
+toMaybeInputEvent :: ∀ a. MaybeInputEvent a => a -> Maybe InputEvent
+toMaybeInputEvent = unsafeConvert "InputEvent"
 
 data MouseEvent
 
