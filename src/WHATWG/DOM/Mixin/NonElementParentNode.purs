@@ -1,8 +1,11 @@
 module WHATWG.DOM.Mixin.NonElementParentNode where
 
-{-
-interface mixin NonElementParentNode {
-  Element? getElementById(DOMString elementId);
-};
-DocumentFragment includes NonElementParentNode;
--}
+import MasonPrelude
+
+import WHATWG.HTML.Types (class NonElementParentNode, Element)
+
+--  Element? getElementById(DOMString elementId);
+foreign import getElementByIdImpl :: ∀ d. String -> d -> Effect Element
+
+getElementById :: ∀ d. NonElementParentNode d => String -> d -> Effect Element
+getElementById = getElementByIdImpl
