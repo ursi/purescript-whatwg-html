@@ -1,5 +1,7 @@
 module WHATWG.HTML.Window
   ( module Exports
+  , alert
+  , alert'
   , document
   , document'
   , window
@@ -71,10 +73,16 @@ document' = I.unsafeGet "document" window'
   readonly attribute Navigator navigator;
   [SecureContext] readonly attribute ApplicationCache applicationCache;
   readonly attribute boolean originIsolated;
+-}
 
-  // user prompts
-  undefined alert();
-  undefined alert(DOMString message);
+-- undefined alert();
+-- undefined alert(DOMString message);
+foreign import alert :: String -> Window -> Effect Unit
+
+alert' :: String -> Effect Unit
+alert' = alert ~$ window'
+
+{-
   boolean confirm(optional DOMString message = "");
   DOMString? prompt(optional DOMString message = "", optional DOMString default = "");
   undefined print();
