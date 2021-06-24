@@ -1,7 +1,9 @@
 module WHATWG.HTML.Window
   ( module Exports
   , document
+  , document'
   , window
+  , window'
   ) where
 
 import MasonPrelude
@@ -15,6 +17,10 @@ import WHATWG.HTML.Types
   as Exports
 
 foreign import window :: Effect Window
+foreign import windowPrime :: Window
+
+window' :: Window
+window' = windowPrime
 
 {-
 interface Window : EventTarget {
@@ -22,9 +28,13 @@ interface Window : EventTarget {
   [LegacyUnforgeable] readonly attribute WindowProxy window;
   [Replaceable] readonly attribute WindowProxy self;
 -}
+
 --[LegacyUnforgeable] readonly attribute Document document;
 document :: Window -> Effect Document
 document = I.unsafeGet "document"
+
+document' :: Effect Document
+document' = I.unsafeGet "document" window'
 
 {-
   attribute DOMString name;
