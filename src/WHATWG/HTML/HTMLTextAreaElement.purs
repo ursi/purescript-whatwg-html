@@ -2,9 +2,15 @@ module WHATWG.HTML.HTMLTextAreaElement
   ( module WHATWG.HTML.Types
   , value
   , setValue
-  ) where
+  , selectionStart
+  , setSelectionStart
+  , selectionEnd
+  , setSelectionEnd
+  )
+  where
 
 import MasonPrelude
+
 import WHATWG.HTML.Types
   ( class MaybeHTMLTextAreaElement
   , HTMLTextAreaElement
@@ -33,6 +39,7 @@ interface HTMLTextAreaElement : HTMLElement {
   readonly attribute DOMString type;
   [CEReactions] attribute DOMString defaultValue;
 -}
+
 -- attribute [LegacyNullToEmptyString] DOMString value;
 value :: HTMLTextAreaElement -> Effect String
 value = I.unsafeGet "value"
@@ -53,8 +60,23 @@ setValue = I.unsafeSet "value"
   readonly attribute NodeList labels;
 
   undefined select();
-  attribute unsigned long selectionStart;
-  attribute unsigned long selectionEnd;
+-}
+
+-- attribute unsigned long selectionStart;
+selectionStart :: HTMLTextAreaElement -> Effect Int
+selectionStart = I.unsafeGet "selectionStart"
+
+setSelectionStart :: Int -> HTMLTextAreaElement -> Effect Unit
+setSelectionStart = I.unsafeSet "selectionStart"
+
+-- attribute unsigned long selectionEnd;
+selectionEnd :: HTMLTextAreaElement -> Effect Int
+selectionEnd = I.unsafeGet "selectionEnd"
+
+setSelectionEnd :: Int -> HTMLTextAreaElement -> Effect Unit
+setSelectionEnd = I.unsafeSet "selectionEnd"
+
+{-
   attribute DOMString selectionDirection;
   undefined setRangeText(DOMString replacement);
   undefined setRangeText(DOMString replacement, unsigned long start, unsigned long end, optional SelectionMode selectionMode = "preserve");
