@@ -31,3 +31,4 @@ import WHATWG.HTML.Mixin.DocumentOrShadowRoot as Exports
 import WHATWG.HTML.Mixin.GlobalEventHandlers as Exports
 import WHATWG.HTML.Mixin.ElementContentEditable as Exports
 import WHATWG.HTML.Mixin.HTMLOrSVGElement as Exports
+import WHATWG.HTML.Mixin.LocalStorage as Exports
