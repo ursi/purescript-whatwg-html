@@ -36,7 +36,7 @@ document :: Window -> Effect Document
 document = I.unsafeGet "document"
 
 document' :: Effect Document
-document' = I.unsafeGet "document" window'
+document' = document window'
 
 {-
   attribute DOMString name;
