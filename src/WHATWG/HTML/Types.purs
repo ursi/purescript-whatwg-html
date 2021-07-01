@@ -58,6 +58,7 @@ module WHATWG.HTML.Types
   , Window
   , class MaybeWindow
   , toMaybeWindow
+  , Storage
   , class ChildNode
   , class NonDocumentTypeChildNode
   , class NonElementParentNode
@@ -491,6 +492,8 @@ instance maybeWindowWindow :: MaybeWindow Window
 
 toMaybeWindow :: ∀ a. MaybeWindow a => a -> Maybe Window
 toMaybeWindow = unsafeConvert "Window"
+
+data Storage
 
 -- Mixins
 class ChildNode a

@@ -26,6 +26,7 @@ import WHATWG.HTML.KeyboardEvent as Exports
 import WHATWG.HTML.InputEvent as Exports
 import WHATWG.HTML.MouseEvent as Exports
 import WHATWG.HTML.Window as Exports
+import WHATWG.HTML.Storage as Exports
 import WHATWG.HTML.Mixin.DocumentOrShadowRoot as Exports
 import WHATWG.HTML.Mixin.GlobalEventHandlers as Exports
 import WHATWG.HTML.Mixin.ElementContentEditable as Exports
