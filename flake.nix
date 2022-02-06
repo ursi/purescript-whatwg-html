@@ -1,11 +1,12 @@
 { inputs =
-    { nixpkgs.url = "github:NixOS/nixpkgs/nixpkgs-unstable";
+    { make-shell.url = "github:ursi/nix-make-shell/1";
+      nixpkgs.url = "github:NixOS/nixpkgs/nixpkgs-unstable";
       purs-nix.url = "github:ursi/purs-nix";
-      utils.url = "github:ursi/flake-utils/2";
+      utils.url = "github:ursi/flake-utils/8";
     };
 
   outputs = { utils, ... }@inputs:
-    utils.default-systems
+    utils.apply-systems { inherit inputs; }
       ({ make-shell, purs-nix, pkgs, ... }:
          let
            inherit (purs-nix) purs;
@@ -25,6 +26,5 @@
                    ];
                };
          }
-      )
-      inputs;
+      );
 }
