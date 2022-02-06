@@ -78,10 +78,12 @@ data DOMTokenList
 
 data Event
 
+class IsEvent :: ∀ k. k -> Constraint
 class IsEvent a
 
 instance isEventEvent :: IsEvent Event
 
+class MaybeEvent :: ∀ k. k -> Constraint
 class (MaybeCustomEvent a, MaybeUIEvent a) <= MaybeEvent a
 
 instance maybeEventEvent :: MaybeEvent Event
@@ -101,12 +103,14 @@ toEvent = unsafeCoerce
 
 data CustomEvent
 
+class IsCustomEvent :: ∀ k. k -> Constraint
 class IsEvent a <= IsCustomEvent a
 
 instance isEventCustomEvent :: IsEvent CustomEvent
 
 instance isCustomEventCustomEvent :: IsCustomEvent CustomEvent
 
+class MaybeCustomEvent :: ∀ k. k -> Constraint
 class MaybeCustomEvent a
 
 instance maybeCustomEventCustomEvent :: MaybeCustomEvent CustomEvent
@@ -116,12 +120,14 @@ toMaybeCustomEvent = unsafeConvert "CustomEvent"
 
 data UIEvent
 
+class IsUIEvent :: ∀ k. k -> Constraint
 class IsEvent a <= IsUIEvent a
 
 instance isEventUIEvent :: IsEvent UIEvent
 
 instance isUIEventUIEvent :: IsUIEvent UIEvent
 
+class MaybeUIEvent :: ∀ k. k -> Constraint
 class (MaybeKeyboardEvent a, MaybeInputEvent a, MaybeMouseEvent a) <= MaybeUIEvent a
 
 instance maybeUIEventUIEvent :: MaybeUIEvent UIEvent
@@ -140,6 +146,7 @@ toMaybeUIEvent = unsafeConvert "UIEvent"
 
 data KeyboardEvent
 
+class IsKeyboardEvent :: ∀ k. k -> Constraint
 class IsUIEvent a <= IsKeyboardEvent a
 
 instance isEventKeyboardEvent :: IsEvent KeyboardEvent
@@ -148,6 +155,7 @@ instance isUIEventKeyboardEvent :: IsUIEvent KeyboardEvent
 
 instance isKeyboardEventKeyboardEvent :: IsKeyboardEvent KeyboardEvent
 
+class MaybeKeyboardEvent :: ∀ k. k -> Constraint
 class MaybeKeyboardEvent a
 
 instance maybeKeyboardEventKeyboardEvent :: MaybeKeyboardEvent KeyboardEvent
@@ -157,6 +165,7 @@ toMaybeKeyboardEvent = unsafeConvert "KeyboardEvent"
 
 data InputEvent
 
+class IsInputEvent :: ∀ k. k -> Constraint
 class IsUIEvent a <= IsInputEvent a
 
 instance isEventInputEvent :: IsEvent InputEvent
@@ -165,6 +174,7 @@ instance isUIEventInputEvent :: IsUIEvent InputEvent
 
 instance isInputEventInputEvent :: IsInputEvent InputEvent
 
+class MaybeInputEvent :: ∀ k. k -> Constraint
 class MaybeInputEvent a
 
 instance maybeInputEventInputEvent :: MaybeInputEvent InputEvent
@@ -174,6 +184,7 @@ toMaybeInputEvent = unsafeConvert "InputEvent"
 
 data MouseEvent
 
+class IsMouseEvent :: ∀ k. k -> Constraint
 class IsUIEvent a <= IsMouseEvent a
 
 instance isEventMouseEvent :: IsEvent MouseEvent
@@ -182,6 +193,7 @@ instance isUIEventMouseEvent :: IsUIEvent MouseEvent
 
 instance isMouseEventMouseEvent :: IsMouseEvent MouseEvent
 
+class MaybeMouseEvent :: ∀ k. k -> Constraint
 class MaybeMouseEvent a
 
 instance maybeMouseEventMouseEvent :: MaybeMouseEvent MouseEvent
@@ -191,10 +203,12 @@ toMaybeMouseEvent = unsafeConvert "MouseEvent"
 
 data EventTarget
 
+class IsEventTarget :: ∀ k. k -> Constraint
 class IsEventTarget a
 
 instance isEventTargetEventTarget :: IsEventTarget EventTarget
 
+class MaybeEventTarget :: ∀ k. k -> Constraint
 class (MaybeNode a, MaybeWindow a) <= MaybeEventTarget a
 
 instance maybeEventTargetEventTarget :: MaybeEventTarget EventTarget
@@ -220,12 +234,14 @@ toEventTarget = unsafeCoerce
 
 data Node
 
+class IsNode :: ∀ k. k -> Constraint
 class IsEventTarget a <= IsNode a
 
 instance isEventTargetNode :: IsEventTarget Node
 
 instance isNodeNode :: IsNode Node
 
+class MaybeNode :: ∀ k. k -> Constraint
 class
   ( MaybeDocument a
   , MaybeElement a
@@ -254,6 +270,7 @@ toMaybeNode = unsafeConvert "Node"
 
 data Document
 
+class IsDocument :: ∀ k. k -> Constraint
 class
   ( IsNode a
   , DocumentOrShadowRoot a
@@ -279,6 +296,7 @@ instance parentNodeDocument :: ParentNode Document
 
 instance xPathEvaluatorBaseDocument :: XPathEvaluatorBase Document
 
+class MaybeDocument :: ∀ k. k -> Constraint
 class MaybeDocument a
 
 instance maybeDocumentDocument :: MaybeDocument Document
@@ -288,6 +306,7 @@ toMaybeDocument = unsafeConvert "HTMLDocument"
 
 data Element
 
+class IsElement :: ∀ k. k -> Constraint
 class
   ( IsNode a
   , ChildNode a
@@ -310,6 +329,7 @@ instance parentNodeElement :: ParentNode Element
 
 instance slottableElement :: Slottable Element
 
+class MaybeElement :: ∀ k. k -> Constraint
 class MaybeHTMLElement a <= MaybeElement a
 
 instance maybeElementElement :: MaybeElement Element
@@ -328,6 +348,7 @@ toMaybeElement = unsafeConvert "Element"
 
 data HTMLElement
 
+class IsHTMLElement :: ∀ k. k -> Constraint
 class
   ( IsElement a
   , ElementContentEditable a
@@ -357,10 +378,8 @@ instance parentNodeHTMLElement :: ParentNode HTMLElement
 
 instance slottableHTMLElement :: Slottable HTMLElement
 
-class
-  ( MaybeHTMLInputElement a
-  , MaybeHTMLTextAreaElement a
-  ) <= MaybeHTMLElement a
+class MaybeHTMLElement :: ∀ k. k -> Constraint
+class (MaybeHTMLInputElement a, MaybeHTMLTextAreaElement a) <= MaybeHTMLElement a
 
 instance maybeHTMLElementHTMLElement :: MaybeHTMLElement HTMLElement
 
@@ -376,6 +395,7 @@ toMaybeHTMLElement = unsafeConvert "HTMLElement"
 
 data HTMLInputElement
 
+class IsHTMLInputElement :: ∀ k. k -> Constraint
 class IsHTMLElement a <= IsHTMLInputElement a
 
 instance isEventTargetHTMLInputElement :: IsEventTarget HTMLInputElement
@@ -402,6 +422,7 @@ instance parentNodeHTMLInputElement :: ParentNode HTMLInputElement
 
 instance slottableHTMLInputElement :: Slottable HTMLInputElement
 
+class MaybeHTMLInputElement :: ∀ k. k -> Constraint
 class MaybeHTMLInputElement a
 
 instance maybeHTMLInputElementHTMLInputElement :: MaybeHTMLInputElement HTMLInputElement
@@ -411,6 +432,7 @@ toMaybeHTMLInputElement = unsafeConvert "HTMLInputElement"
 
 data HTMLTextAreaElement
 
+class IsHTMLTextAreaElement :: ∀ k. k -> Constraint
 class IsHTMLElement a <= IsHTMLTextAreaElement a
 
 instance isEventTargetHTMLTextAreaElement :: IsEventTarget HTMLTextAreaElement
@@ -437,6 +459,7 @@ instance parentNodeHTMLTextAreaElement :: ParentNode HTMLTextAreaElement
 
 instance slottableHTMLTextAreaElement :: Slottable HTMLTextAreaElement
 
+class MaybeHTMLTextAreaElement :: ∀ k. k -> Constraint
 class MaybeHTMLTextAreaElement a
 
 instance maybeHTMLTextAreaElementHTMLTextAreaElement :: MaybeHTMLTextAreaElement HTMLTextAreaElement
@@ -444,14 +467,12 @@ instance maybeHTMLTextAreaElementHTMLTextAreaElement :: MaybeHTMLTextAreaElement
 toMaybeHTMLTextAreaElement :: ∀ a. MaybeHTMLTextAreaElement a => a -> Maybe HTMLTextAreaElement
 toMaybeHTMLTextAreaElement = unsafeConvert "HTMLTextAreaElement"
 
-class
-  ( IsNode a
-  , ChildNode a
-  , NonDocumentTypeChildNode a
-  ) <= IsCharacterData a
+class IsCharacterData :: ∀ k. k -> Constraint
+class (IsNode a, ChildNode a, NonDocumentTypeChildNode a) <= IsCharacterData a
 
 data Text
 
+class IsText :: ∀ k. k -> Constraint
 class (IsCharacterData a, Slottable a) <= IsText a
 
 instance isEventTargetText :: IsEventTarget Text
@@ -466,6 +487,7 @@ instance nonDocumentTypeChildNodeText :: NonDocumentTypeChildNode Text
 
 instance slottableText :: Slottable Text
 
+class MaybeText :: ∀ k. k -> Constraint
 class MaybeText a
 
 instance maybeTextText :: MaybeText Text
@@ -475,10 +497,8 @@ toMaybeText = unsafeConvert "Text"
 
 data Window
 
-class
-  ( IsEventTarget a
-  , GlobalEventHandlers a
-  ) <= IsWindow a
+class IsWindow :: ∀ k. k -> Constraint
+class (IsEventTarget a, GlobalEventHandlers a) <= IsWindow a
 
 instance isEventTargetWindow :: IsEventTarget Window
 
@@ -486,6 +506,7 @@ instance isWindowWindow :: IsWindow Window
 
 instance globalEventHandlersWindow :: GlobalEventHandlers Window
 
+class MaybeWindow :: ∀ k. k -> Constraint
 class MaybeWindow a
 
 instance maybeWindowWindow :: MaybeWindow Window
@@ -496,22 +517,32 @@ toMaybeWindow = unsafeConvert "Window"
 data Storage
 
 -- Mixins
+class ChildNode :: ∀ k. k -> Constraint
 class ChildNode a
 
+class NonDocumentTypeChildNode :: ∀ k. k -> Constraint
 class NonDocumentTypeChildNode a
 
+class NonElementParentNode :: ∀ k. k -> Constraint
 class NonElementParentNode a
 
+class ParentNode :: ∀ k. k -> Constraint
 class ParentNode a
 
+class Slottable :: ∀ k. k -> Constraint
 class Slottable a
 
+class XPathEvaluatorBase :: ∀ k. k -> Constraint
 class XPathEvaluatorBase a
 
+class DocumentOrShadowRoot :: ∀ k. k -> Constraint
 class DocumentOrShadowRoot a
 
+class ElementContentEditable :: ∀ k. k -> Constraint
 class ElementContentEditable a
 
+class GlobalEventHandlers :: ∀ k. k -> Constraint
 class GlobalEventHandlers a
 
+class HTMLOrSVGElement :: ∀ k. k -> Constraint
 class HTMLOrSVGElement a
