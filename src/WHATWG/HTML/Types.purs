@@ -1,64 +1,64 @@
 -- for each data type T, an instance of IsT and MaybeT must be defined for T so that all required instances can be enforced by the compiler
 -- however, certain type classes do not need to be exported because they serve no other purpose, e.g., MaybeEvent and IsMouseEvent
 module WHATWG.HTML.Types
-  ( DOMTokenList
-  , Event
+  ( module Web.DOM.DOMTokenList
+  , module Web.Event.Event
   , class IsEvent
   , toEvent
-  , CustomEvent
+  , module Web.Event.CustomEvent
   , class IsCustomEvent
   , class MaybeCustomEvent
   , toMaybeCustomEvent
-  , UIEvent
+  , module Web.UIEvent.UIEvent
   , class IsUIEvent
   , class MaybeUIEvent
   , toUIEvent
   , toMaybeUIEvent
-  , KeyboardEvent
+  , module Web.UIEvent.KeyboardEvent
   , class MaybeKeyboardEvent
   , toMaybeKeyboardEvent
-  , InputEvent
+  , module Web.UIEvent.InputEvent
   , class MaybeInputEvent
   , toMaybeInputEvent
-  , MouseEvent
+  , module Web.UIEvent.MouseEvent
   , class MaybeMouseEvent
   , toMaybeMouseEvent
-  , EventTarget
+  , module Web.Event.EventTarget
   , class IsEventTarget
   , toEventTarget
-  , Node
+  , module Web.DOM.Node
   , class IsNode
   , class MaybeNode
   , toNode
   , toMaybeNode
-  , Document
+  , module Web.DOM.Document
   , class MaybeDocument
   , toMaybeDocument
-  , Element
+  , module Web.DOM.Element
   , class IsElement
   , class MaybeElement
   , toElement
   , toMaybeElement
-  , HTMLElement
+  , module Web.HTML.HTMLElement
   , class IsHTMLElement
   , class MaybeHTMLElement
   , toHTMLElement
   , toMaybeHTMLElement
   , class MaybeHTMLInputElement
-  , HTMLInputElement
+  , module Web.HTML.HTMLInputElement
   , toMaybeHTMLInputElement
   , class MaybeHTMLTextAreaElement
-  , HTMLTextAreaElement
+  , module Web.HTML.HTMLTextAreaElement
   , toMaybeHTMLTextAreaElement
   , class IsCharacterData
-  , Text
+  , module Web.DOM.Text
   , class IsText
   , class MaybeText
   , toMaybeText
-  , Window
+  , module Web.HTML.Window
   , class MaybeWindow
   , toMaybeWindow
-  , Storage
+  , module Web.Storage.Storage
   , class ChildNode
   , class NonDocumentTypeChildNode
   , class NonElementParentNode
@@ -72,11 +72,24 @@ module WHATWG.HTML.Types
   ) where
 
 import MasonPrelude
+import Web.DOM.Document (Document)
+import Web.DOM.Element (Element)
+import Web.DOM.DOMTokenList (DOMTokenList)
+import Web.DOM.Node (Node)
+import Web.DOM.Text (Text)
+import Web.Event.Event (Event)
+import Web.Event.EventTarget (EventTarget)
+import Web.Event.CustomEvent (CustomEvent)
+import Web.HTML.HTMLElement (HTMLElement)
+import Web.HTML.HTMLInputElement (HTMLInputElement)
+import Web.HTML.HTMLTextAreaElement (HTMLTextAreaElement)
+import Web.HTML.Window (Window)
+import Web.Storage.Storage (Storage)
+import Web.UIEvent.InputEvent (InputEvent)
+import Web.UIEvent.KeyboardEvent (KeyboardEvent)
+import Web.UIEvent.MouseEvent (MouseEvent)
+import Web.UIEvent.UIEvent (UIEvent)
 import WHATWG.Internal (unsafeConvert)
-
-data DOMTokenList
-
-data Event
 
 class IsEvent :: ∀ k. k -> Constraint
 class IsEvent a
@@ -101,8 +114,6 @@ instance maybeMouseEventEvent :: MaybeMouseEvent Event
 toEvent :: ∀ a. IsEvent a => a -> Event
 toEvent = unsafeCoerce
 
-data CustomEvent
-
 class IsCustomEvent :: ∀ k. k -> Constraint
 class IsEvent a <= IsCustomEvent a
 
@@ -117,8 +128,6 @@ instance maybeCustomEventCustomEvent :: MaybeCustomEvent CustomEvent
 
 toMaybeCustomEvent :: ∀ a. MaybeCustomEvent a => a -> Maybe CustomEvent
 toMaybeCustomEvent = unsafeConvert "CustomEvent"
-
-data UIEvent
 
 class IsUIEvent :: ∀ k. k -> Constraint
 class IsEvent a <= IsUIEvent a
@@ -144,8 +153,6 @@ toUIEvent = unsafeCoerce
 toMaybeUIEvent :: ∀ a. MaybeUIEvent a => a -> Maybe UIEvent
 toMaybeUIEvent = unsafeConvert "UIEvent"
 
-data KeyboardEvent
-
 class IsKeyboardEvent :: ∀ k. k -> Constraint
 class IsUIEvent a <= IsKeyboardEvent a
 
@@ -162,8 +169,6 @@ instance maybeKeyboardEventKeyboardEvent :: MaybeKeyboardEvent KeyboardEvent
 
 toMaybeKeyboardEvent :: ∀ a. MaybeKeyboardEvent a => a -> Maybe KeyboardEvent
 toMaybeKeyboardEvent = unsafeConvert "KeyboardEvent"
-
-data InputEvent
 
 class IsInputEvent :: ∀ k. k -> Constraint
 class IsUIEvent a <= IsInputEvent a
@@ -182,8 +187,6 @@ instance maybeInputEventInputEvent :: MaybeInputEvent InputEvent
 toMaybeInputEvent :: ∀ a. MaybeInputEvent a => a -> Maybe InputEvent
 toMaybeInputEvent = unsafeConvert "InputEvent"
 
-data MouseEvent
-
 class IsMouseEvent :: ∀ k. k -> Constraint
 class IsUIEvent a <= IsMouseEvent a
 
@@ -200,8 +203,6 @@ instance maybeMouseEventMouseEvent :: MaybeMouseEvent MouseEvent
 
 toMaybeMouseEvent :: ∀ a. MaybeMouseEvent a => a -> Maybe MouseEvent
 toMaybeMouseEvent = unsafeConvert "MouseEvent"
-
-data EventTarget
 
 class IsEventTarget :: ∀ k. k -> Constraint
 class IsEventTarget a
@@ -231,8 +232,6 @@ instance maybeWindowEventTarget :: MaybeWindow EventTarget
 
 toEventTarget :: ∀ a. IsEventTarget a => a -> EventTarget
 toEventTarget = unsafeCoerce
-
-data Node
 
 class IsNode :: ∀ k. k -> Constraint
 class IsEventTarget a <= IsNode a
@@ -268,8 +267,6 @@ toNode = unsafeCoerce
 toMaybeNode :: ∀ a. MaybeNode a => a -> Maybe Node
 toMaybeNode = unsafeConvert "Node"
 
-data Document
-
 class IsDocument :: ∀ k. k -> Constraint
 class
   ( IsNode a
@@ -303,8 +300,6 @@ instance maybeDocumentDocument :: MaybeDocument Document
 
 toMaybeDocument :: ∀ a. MaybeDocument a => a -> Maybe Document
 toMaybeDocument = unsafeConvert "HTMLDocument"
-
-data Element
 
 class IsElement :: ∀ k. k -> Constraint
 class
@@ -345,8 +340,6 @@ toElement = unsafeCoerce
 
 toMaybeElement :: ∀ a. MaybeElement a => a -> Maybe Element
 toMaybeElement = unsafeConvert "Element"
-
-data HTMLElement
 
 class IsHTMLElement :: ∀ k. k -> Constraint
 class
@@ -393,8 +386,6 @@ toHTMLElement = unsafeCoerce
 toMaybeHTMLElement :: ∀ a. MaybeHTMLElement a => a -> Maybe HTMLElement
 toMaybeHTMLElement = unsafeConvert "HTMLElement"
 
-data HTMLInputElement
-
 class IsHTMLInputElement :: ∀ k. k -> Constraint
 class IsHTMLElement a <= IsHTMLInputElement a
 
@@ -429,8 +420,6 @@ instance maybeHTMLInputElementHTMLInputElement :: MaybeHTMLInputElement HTMLInpu
 
 toMaybeHTMLInputElement :: ∀ a. MaybeHTMLInputElement a => a -> Maybe HTMLInputElement
 toMaybeHTMLInputElement = unsafeConvert "HTMLInputElement"
-
-data HTMLTextAreaElement
 
 class IsHTMLTextAreaElement :: ∀ k. k -> Constraint
 class IsHTMLElement a <= IsHTMLTextAreaElement a
@@ -470,8 +459,6 @@ toMaybeHTMLTextAreaElement = unsafeConvert "HTMLTextAreaElement"
 class IsCharacterData :: ∀ k. k -> Constraint
 class (IsNode a, ChildNode a, NonDocumentTypeChildNode a) <= IsCharacterData a
 
-data Text
-
 class IsText :: ∀ k. k -> Constraint
 class (IsCharacterData a, Slottable a) <= IsText a
 
@@ -495,8 +482,6 @@ instance maybeTextText :: MaybeText Text
 toMaybeText :: ∀ a. MaybeText a => a -> Maybe Text
 toMaybeText = unsafeConvert "Text"
 
-data Window
-
 class IsWindow :: ∀ k. k -> Constraint
 class (IsEventTarget a, GlobalEventHandlers a) <= IsWindow a
 
@@ -513,8 +498,6 @@ instance maybeWindowWindow :: MaybeWindow Window
 
 toMaybeWindow :: ∀ a. MaybeWindow a => a -> Maybe Window
 toMaybeWindow = unsafeConvert "Window"
-
-data Storage
 
 -- Mixins
 class ChildNode :: ∀ k. k -> Constraint
