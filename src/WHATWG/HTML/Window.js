@@ -1,5 +1,6 @@
-exports.window = () => window;
+const window_ = () => window;
+export { window_ as window };
 
-exports.windowPrime = window;
+export const windowPrime = window;
 
-exports.alert = message => window => () => window.alert(message);
+export const alert = message => window => () => window.alert(message);

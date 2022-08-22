@@ -1,1 +1,1 @@
-exports.getElementByIdImpl = id => document => () => document.getElementById(id)
+export const getElementByIdImpl = id => document => () => document.getElementById(id)

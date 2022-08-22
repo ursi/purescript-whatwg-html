@@ -1,1 +1,1 @@
-exports.focusImpl = options => element => () => element.focus(options);
+export const focusImpl = options => element => () => element.focus(options);

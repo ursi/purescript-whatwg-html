@@ -1,5 +1,5 @@
-exports.getItemImpl = key => storage => () => storage.getItem(key);
+export const getItemImpl = key => storage => () => storage.getItem(key);
 
-exports.setItem = key => value => storage => () => storage.setItem(key, value);
+export const setItem = key => value => storage => () => storage.setItem(key, value);
 
-exports.removeItem = key => storage => () => storage.removeItem(key);
+export const removeItem = key => storage => () => storage.removeItem(key);

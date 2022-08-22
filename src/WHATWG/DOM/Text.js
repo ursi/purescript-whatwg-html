@@ -1,1 +1,1 @@
-exports.new = data => () => new window.Text(data);
+export const new = data => () => new window.Text(data);

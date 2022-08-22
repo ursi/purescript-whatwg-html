@@ -23,7 +23,15 @@ type AddEventListenerOptions
 
 -- | `EffectFn1` is used because to use `removeEventListener`, the functions need to be referentially equal.
 -- undefined addEventListener(DOMString type, EventListener? callback, optional (AddEventListenerOptions or boolean) options = {});
-foreign import addEventListener ::
+foreign import addEventListenerImpl ::
+  ∀ a b r.
+  String ->
+  (EffectFn1 Event b) ->
+  r ->
+  a ->
+  Effect Unit
+
+addEventListener ::
   ∀ a b r.
   IsEventTarget a =>
   FFIOptions () AddEventListenerOptions r =>
@@ -32,9 +40,18 @@ foreign import addEventListener ::
   r ->
   a ->
   Effect Unit
+addEventListener = addEventListenerImpl
 
 -- undefined removeEventListener(DOMString type, EventListener? callback, optional (EventListenerOptions or boolean) options = {});
-foreign import removeEventListener ::
+foreign import removeEventListenerImpl ::
+  ∀ a b r.
+  String ->
+  (EffectFn1 Event b) ->
+  r ->
+  a ->
+  Effect Unit
+
+removeEventListener ::
   ∀ a b r.
   IsEventTarget a =>
   FFIOptions () EventListenerOptions r =>
@@ -43,6 +60,10 @@ foreign import removeEventListener ::
   r ->
   a ->
   Effect Unit
+removeEventListener = removeEventListenerImpl
 
 -- boolean dispatchEvent(Event event);
-foreign import dispatchEvent :: ∀ a b. IsEvent a => IsEventTarget b => a -> b -> Effect Boolean
+foreign import dispatchEventImpl :: ∀ a b. a -> b -> Effect Boolean
+
+dispatchEvent :: ∀ a b. IsEvent a => IsEventTarget b => a -> b -> Effect Boolean
+dispatchEvent = dispatchEventImpl

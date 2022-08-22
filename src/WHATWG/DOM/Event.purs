@@ -25,7 +25,10 @@ type EventInit
     )
 
 -- constructor(DOMString type, optional EventInit eventInitDict = {});
-foreign import new :: ∀ r. FFIOptions () EventInit r => String -> r -> Effect Event
+foreign import newImpl :: ∀ r. String -> r -> Effect Event
+
+new :: ∀ r. FFIOptions () EventInit r => String -> r -> Effect Event
+new = newImpl
 
 {-
 interface Event {
@@ -66,7 +69,10 @@ unsafeCurrentTarget = unsafeCoerce <. currentTargetNullable
 -}
 
 -- undefined stopPropagation();
-foreign import stopPropagation :: ∀ a. IsEvent a => a -> Effect Unit
+foreign import stopPropagationImpl :: ∀ a. a -> Effect Unit
+
+stopPropagation :: ∀ a. IsEvent a => a -> Effect Unit
+stopPropagation = stopPropagationImpl
 
 {-
            attribute boolean cancelBubble; // historical alias of .stopPropagation
@@ -77,7 +83,10 @@ foreign import stopPropagation :: ∀ a. IsEvent a => a -> Effect Unit
            attribute boolean returnValue;  // historical
   -}
 -- undefined preventDefault();
-foreign import preventDefault :: ∀ a. IsEvent a => a -> Effect Unit
+foreign import preventDefaultImpl :: ∀ a. a -> Effect Unit
+
+preventDefault :: ∀ a. IsEvent a => a -> Effect Unit
+preventDefault = preventDefaultImpl
 
 {-
   readonly attribute boolean defaultPrevented;

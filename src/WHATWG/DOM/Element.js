@@ -1,5 +1,5 @@
-exports.setAttribute = () => qualifiedName => value => element => () => {
+export const setAttributeImpl = qualifiedName => value => element => () => {
 	return element.setAttribute(qualifiedName, value);
 };
 
-exports.removeAttribute = () => qualifiedName => element => () => element.removeAttribute(qualifiedName);
+export const removeAttributeImpl = qualifiedName => element => () => element.removeAttribute(qualifiedName);

@@ -1,15 +1,15 @@
-exports.insertBefore = () => () => () => node => child => parent => () => {
+export const insertBeforeImpl = node => child => parent => () => {
 	return parent.insertBefore(node, child);
 };
 
-exports.appendChild = () => () => child => parent => () => {
+export const appendChildImpl = child => parent => () => {
 	return parent.appendChild(child);
 };
 
-exports.replaceChild = () => () => () => node => child => parent => () => {
+export const replaceChildImpl = node => child => parent => () => {
 	return parent.replaceChild(node, child);
 };
 
-exports.removeChild = () => () => child => parent => () => {
+export const removeChildImpl = child => parent => () => {
 	return parent.removeChild(child);
 };

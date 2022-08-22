@@ -1,4 +1,4 @@
-exports.instanceof = value => name => {
+const instanceof_ = value => name => {
 	try {
 		return value instanceof window[name];
 	} catch (_) {
@@ -6,8 +6,10 @@ exports.instanceof = value => name => {
 	}
 };
 
-exports.unsafeGet = key => a => () => a[key];
+export { instanceof_ as instanceof }
 
-exports.unsafeGetPure = key => a => a[key];
+export const unsafeGet = key => a => () => a[key];
 
-exports.unsafeSet = key => value => a => () => a[key] = value;
+export const unsafeGetPure = key => a => a[key];
+
+export const unsafeSet = key => value => a => () => a[key] = value;

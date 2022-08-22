@@ -49,13 +49,19 @@ classList = I.unsafeGet "classList"
   DOMString? getAttributeNS(DOMString? namespace, DOMString localName);
 -}
 -- [CEReactions] undefined setAttribute(DOMString qualifiedName, DOMString value);
-foreign import setAttribute :: ∀ a. IsElement a => String -> String -> a -> Effect Unit
+foreign import setAttributeImpl :: ∀ a. String -> String -> a -> Effect Unit
+
+setAttribute :: ∀ a. IsElement a => String -> String -> a -> Effect Unit
+setAttribute = setAttributeImpl
 
 {-
   [CEReactions] undefined setAttributeNS(DOMString? namespace, DOMString qualifiedName, DOMString value);
 -}
 -- [CEReactions] undefined removeAttribute(DOMString qualifiedName);
-foreign import removeAttribute :: ∀ a. IsElement a => String -> a -> Effect Unit
+foreign import removeAttributeImpl :: ∀ a. String -> a -> Effect Unit
+
+removeAttribute :: ∀ a. IsElement a => String -> a -> Effect Unit
+removeAttribute = removeAttributeImpl
 
 {-
   [CEReactions] undefined removeAttributeNS(DOMString? namespace, DOMString localName);

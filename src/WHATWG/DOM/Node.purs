@@ -89,16 +89,28 @@ firstChild = map Nullable.toMaybe <. firstChildNullable
   boolean isDefaultNamespace(DOMString? namespace);
 -}
 -- [CEReactions] Node insertBefore(Node node, Node? child);
-foreign import insertBefore :: ∀ a b c. IsNode a => IsNode b => IsNode c => a -> b -> c -> Effect a
+foreign import insertBeforeImpl :: ∀ a b c. a -> b -> c -> Effect a
+
+insertBefore :: ∀ a b c. IsNode a => IsNode b => IsNode c => a -> b -> c -> Effect a
+insertBefore = insertBeforeImpl
 
 -- [CEReactions] Node appendChild(Node node);
-foreign import appendChild :: ∀ a b. IsNode a => IsNode b => a -> b -> Effect a
+foreign import appendChildImpl :: ∀ a b. a -> b -> Effect a
+
+appendChild :: ∀ a b. IsNode a => IsNode b => a -> b -> Effect a
+appendChild = appendChildImpl
 
 -- [CEReactions] Node replaceChild(Node node, Node child);
-foreign import replaceChild :: ∀ a b c. IsNode a => IsNode b => IsNode c => a -> b -> c -> Effect b
+foreign import replaceChildImpl :: ∀ a b c. a -> b -> c -> Effect b
+
+replaceChild :: ∀ a b c. IsNode a => IsNode b => IsNode c => a -> b -> c -> Effect b
+replaceChild = replaceChildImpl
 
 -- [CEReactions] Node removeChild(Node child);
-foreign import removeChild :: ∀ a b. IsNode a => IsNode b => a -> b -> Effect a
+foreign import removeChildImpl :: ∀ a b. a -> b -> Effect a
+
+removeChild :: ∀ a b. IsNode a => IsNode b => a -> b -> Effect a
+removeChild = removeChildImpl
 
 {-
 dictionary GetRootNodeOptions {

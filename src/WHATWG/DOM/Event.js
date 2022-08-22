@@ -1,5 +1,5 @@
-exports.new = () => type => eventInitDict => () => new window.Event(type, eventInitDict);
+export const newImpl = type => eventInitDict => () => new window.Event(type, eventInitDict);
 
-exports.stopPropagation = () => event => () => event.stopPropagation();
+export const stopPropagationImpl = event => () => event.stopPropagation();
 
-exports.preventDefault = () => event => () => event.preventDefault();
+export const preventDefaultImpl = event => () => event.preventDefault();
